@@ -33,7 +33,7 @@ function AppContent() {
   });
 
   return (
-    <div className="min-h-screen bg-background text-foreground selection:bg-indigo-500/30">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-indigo-500/30">
       {/* Global Grid Background */}
       <div className="fixed inset-0 z-[-1] bg-background">
         <div
@@ -56,7 +56,7 @@ function AppContent() {
       {/* Header */}
       <Header />
 
-      <main className="w-full">
+      <main className="w-full relative">
         <AnimatePresence mode="wait">
           <Routes location={location}>
             <Route path="/" element={<Home />} />

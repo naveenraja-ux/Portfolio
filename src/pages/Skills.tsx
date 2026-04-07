@@ -201,7 +201,7 @@ const tools = [
   { name: "CorelDraw", logo: "https://dear-copper-l5udx6absq.edgeone.app/coreldraw.png" }
 ];
 
-const ToolItem = ({ tool }: { tool: typeof tools[0] }) => {
+const ToolItem: React.FC<{ tool: typeof tools[0] }> = ({ tool }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const scale = useMotionValue(1);
   const grayscale = useMotionValue(100);
@@ -290,52 +290,82 @@ export function Skills() {
             {expertise.map((skill, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="group relative"
               >
-                <GlassCard className="group h-full p-8 border-border/50 hover:border-indigo-500/30 transition-all duration-500 relative overflow-hidden">
+                {/* Animated Border Glow */}
+                <div className={cn(
+                  "absolute -inset-[1px] rounded-[2rem] opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 bg-gradient-to-br",
+                  skill.color
+                )} />
+                
+                <div className="relative h-full bg-[#0d0d0f] border border-white/5 rounded-[2rem] p-10 overflow-hidden flex flex-col shadow-2xl">
                   {/* Background Graphic */}
-                  {skill.graphic}
+                  <div className="absolute inset-0 z-0 group-hover:scale-110 transition-transform duration-700">
+                    {skill.graphic}
+                  </div>
 
-                  {/* Background Glow */}
-                  <div className={cn(
-                    "absolute -right-10 -top-10 w-32 h-32 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-br",
-                    skill.color
-                  )} />
-                  
-                  <div className={cn(
-                    "w-14 h-14 rounded-2xl flex items-center justify-center mb-8 bg-background/50 border border-border group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 shadow-lg relative z-10",
-                    skill.iconColor
-                  )}>
-                    {skill.icon}
+                  {/* Top Section */}
+                  <div className="relative z-10 flex items-start justify-between mb-10">
+                    <div className={cn(
+                      "w-16 h-16 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl",
+                      skill.iconColor
+                    )}>
+                      {skill.icon}
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
+                      <Sparkles size={16} className="text-indigo-400" />
+                    </div>
                   </div>
                   
-                  <h3 className="text-2xl font-bold mb-4 tracking-tight group-hover:text-indigo-400 transition-colors relative z-10">{skill.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed font-medium relative z-10">
-                    {skill.desc}
-                  </p>
-                </GlassCard>
+                  {/* Content */}
+                  <div className="relative z-10 mt-auto">
+                    <h3 className="text-2xl font-black mb-4 tracking-tight text-white group-hover:text-indigo-300 transition-colors duration-300">
+                      {skill.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed font-medium text-lg">
+                      {skill.desc}
+                    </p>
+                  </div>
+
+                  {/* Bottom Indicator */}
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center" />
+                </div>
               </motion.div>
             ))}
           </div>
 
-          <div className="mt-32">
-            <h2 className="text-xs uppercase tracking-[0.5em] font-black text-foreground/20 mb-16 text-center">Design Arsenal</h2>
-            <div className="relative w-full overflow-hidden">
-              <div className="absolute inset-y-0 left-0 w-60 bg-gradient-to-r from-background via-background/80 to-transparent z-10" />
-              <div className="absolute inset-y-0 right-0 w-60 bg-gradient-to-l from-background via-background/80 to-transparent z-10" />
-              
-              <motion.div 
-                animate={{ x: ["0%", "-50%"] }}
-                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-                className="flex gap-20 w-max items-center"
-              >
-                {[...tools, ...tools, ...tools].map((tool, idx) => (
-                  <ToolItem key={idx} tool={tool} />
-                ))}
-              </motion.div>
+          <div className="mt-40 relative">
+            {/* Background Text Decoration */}
+            <div className="absolute -top-20 left-1/2 -translate-x-1/2 text-[10vw] font-black text-white/[0.02] whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter">
+              Tools & Technologies
+            </div>
+
+            <div className="relative z-10">
+              <div className="flex flex-col items-center mb-20">
+                <Badge className="mb-4 bg-white/5 text-white/40 border-white/10 px-6 py-2">Design Arsenal</Badge>
+                <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter text-center">
+                  Crafting with Precision
+                </h2>
+              </div>
+
+              <div className="relative w-full overflow-hidden py-10">
+                <div className="absolute inset-y-0 left-0 w-40 md:w-80 bg-gradient-to-r from-background via-background/50 to-transparent z-10" />
+                <div className="absolute inset-y-0 right-0 w-40 md:w-80 bg-gradient-to-l from-background via-background/50 to-transparent z-10" />
+                
+                <motion.div 
+                  animate={{ x: ["0%", "-50%"] }}
+                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
+                  className="flex gap-12 md:gap-24 w-max items-center"
+                >
+                  {[...tools, ...tools, ...tools].map((tool, idx) => (
+                    <ToolItem key={idx} tool={tool} />
+                  ))}
+                </motion.div>
+              </div>
             </div>
           </div>
         </div>

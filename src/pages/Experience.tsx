@@ -83,54 +83,87 @@ export function Experience() {
           </motion.p>
         </div>
 
-        <div className="relative space-y-12 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+        <div className="relative space-y-16 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
           {experiences.map((exp, idx) => (
-            <div key={idx} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
+            <motion.div 
+              key={idx} 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group"
+            >
               {/* Icon Dot */}
-              <div className="flex items-center justify-center w-10 h-10 rounded-full border border-border bg-background shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                <Briefcase size={16} className="text-indigo-400" />
+              <div className="flex items-center justify-center w-12 h-12 rounded-full border border-indigo-500/30 bg-background shadow-[0_0_20px_rgba(99,102,241,0.2)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform duration-500 group-hover:scale-110">
+                <Briefcase size={20} className="text-indigo-400" />
               </div>
 
               {/* Content Card */}
-              <GlassCard className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-5 md:p-8 hover:border-indigo-500/30 transition-all duration-500">
-                <div className="flex flex-col mb-6">
-                  <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-                    <h3 className="text-xl md:text-2xl font-bold text-foreground tracking-tight">{exp.role}</h3>
-                    <Badge className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 px-3 py-1 text-xs font-bold">
-                      {exp.period}
-                    </Badge>
-                  </div>
-                  <div className="flex items-center gap-4 text-sm font-medium">
-                    <span className="text-indigo-400">{exp.company}</span>
-                    <span className="text-muted-foreground/40">•</span>
-                    <span className="flex items-center gap-1 text-muted-foreground">
-                      <MapPin size={14} /> {exp.location}
-                    </span>
-                  </div>
-                </div>
+              <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-3rem)] relative">
+                {/* Animated Border/Glow */}
+                <div className="absolute -inset-[1px] bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl opacity-20 group-hover:opacity-100 blur-sm transition-opacity duration-500" />
                 
-                <p className="text-muted-foreground mb-6 leading-relaxed italic">
-                  "{exp.desc}"
-                </p>
-                
-                <div className="space-y-4 mb-8">
-                  {exp.points.map((point, i) => (
-                    <div key={i} className="flex items-start gap-3 text-muted-foreground text-sm leading-relaxed">
-                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-                      {point}
-                    </div>
-                  ))}
-                </div>
+                <div className="relative bg-[#0d0d0f] border border-white/5 rounded-2xl p-6 md:p-10 overflow-hidden shadow-2xl">
+                  {/* Card Gradient Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 via-transparent to-purple-500/10 opacity-50" />
+                  
+                  {/* Floating Motion Graphic */}
+                  <motion.div 
+                    animate={{ 
+                      y: [0, -15, 0],
+                      rotate: [0, 5, 0]
+                    }}
+                    transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                    className="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"
+                  />
 
-                <div className="flex flex-wrap gap-2 pt-6 border-t border-border/50">
-                  {exp.skills.map(skill => (
-                    <Badge key={skill} className="bg-background/50 border-border text-muted-foreground hover:text-foreground transition-colors">
-                      {skill}
-                    </Badge>
-                  ))}
+                  <div className="relative z-10">
+                    <div className="flex flex-col mb-8">
+                      <div className="flex flex-wrap items-center justify-between gap-4 mb-4">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight group-hover:text-indigo-300 transition-colors duration-300">{exp.role}</h3>
+                        <Badge className="bg-indigo-500/20 text-indigo-300 border-indigo-500/30 px-4 py-1.5 text-xs font-black uppercase tracking-widest">
+                          {exp.period}
+                        </Badge>
+                      </div>
+                      <div className="flex items-center gap-4 text-base font-semibold">
+                        <span className="text-indigo-400/90">{exp.company}</span>
+                        <span className="text-white/10">•</span>
+                        <span className="flex items-center gap-2 text-muted-foreground/80">
+                          <MapPin size={16} className="text-indigo-400/50" /> {exp.location}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <p className="text-lg text-muted-foreground mb-8 leading-relaxed font-medium border-l-2 border-indigo-500/30 pl-4 py-1">
+                      {exp.desc}
+                    </p>
+                    
+                    <div className="grid grid-cols-1 gap-4 mb-10">
+                      {exp.points.map((point, i) => (
+                        <motion.div 
+                          key={i} 
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 0.2 + (i * 0.1) }}
+                          className="flex items-start gap-4 text-muted-foreground/90 text-base leading-relaxed group/item"
+                        >
+                          <div className="mt-2 w-2 h-2 rounded-full bg-indigo-500 shadow-[0_0_10px_rgba(99,102,241,0.5)] shrink-0 group-hover/item:scale-150 transition-transform" />
+                          {point}
+                        </motion.div>
+                      ))}
+                    </div>
+
+                    <div className="flex flex-wrap gap-3 pt-8 border-t border-white/5">
+                      {exp.skills.map(skill => (
+                        <Badge key={skill} className="bg-white/5 border-white/10 text-white/60 hover:text-white hover:bg-indigo-500/20 hover:border-indigo-500/30 transition-all duration-300 cursor-default">
+                          {skill}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </GlassCard>
-            </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

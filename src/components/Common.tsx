@@ -37,7 +37,7 @@ export const SectionTitle = ({ title, subtitle }: { title: string; subtitle?: st
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
-      className="text-3xl md:text-4xl font-bold text-gradient mb-4"
+      className="text-2xl md:text-4xl font-bold text-gradient mb-4 tracking-tight"
     >
       {title}
     </motion.h2>
