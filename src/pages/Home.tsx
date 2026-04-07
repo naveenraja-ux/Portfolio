@@ -371,7 +371,7 @@ export function Home() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-wrap justify-center gap-4 md:gap-6"
+              className="flex justify-center"
             >
               <Link to="/work">
                 <HoverBorderGradient
@@ -384,17 +384,6 @@ export function Home() {
                   </span>
                 </HoverBorderGradient>
               </Link>
-              
-              <motion.a
-                href="#" // Replace with actual resume link
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-6 py-2 bg-white/5 hover:bg-white/10 text-foreground border border-border rounded-full font-semibold transition-all flex items-center gap-2 backdrop-blur-sm"
-              >
-                <Download size={18} /> Resume
-              </motion.a>
             </motion.div>
           </div>
         </section>
