@@ -70,7 +70,7 @@ export function Header() {
             </Link>
           ))}
           <a 
-            href="https://drive.google.com/file/d/1WL84esf7GjJixaPvTGsvQt29-GHQtrli/view?usp=sharing" 
+            href="https://drive.google.com/file/d/1TSBM2Q39HEF9Jl38ILO2cFee3uz0ZuZL/view?usp=sharing" 
             target="_blank" 
             rel="noopener noreferrer"
           >
@@ -124,7 +124,7 @@ export function Header() {
                 </Link>
               ))}
               <a 
-                href="https://drive.google.com/file/d/1WL84esf7GjJixaPvTGsvQt29-GHQtrli/view?usp=sharing" 
+                href="https://drive.google.com/file/d/1TSBM2Q39HEF9Jl38ILO2cFee3uz0ZuZL/view?usp=sharing" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-lg font-medium py-2 text-muted-foreground"

@@ -882,7 +882,7 @@ export function Home() {
                 </Link>
                 
                 <motion.a
-                  href="#" // Replace with actual resume link
+                  href="https://drive.google.com/file/d/1TSBM2Q39HEF9Jl38ILO2cFee3uz0ZuZL/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
