@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Layout, Sparkles, MousePointer2, Layers, Smartphone, CheckCircle2, Figma, Palette, Zap, Target, Users, Terminal, Globe, Search, BarChart3, Component } from "lucide-react";
-import { GlassCard, PageTransition, Badge } from "@/components/Common";
+import { Layout, Sparkles, MousePointer2, Layers, Smartphone, CheckCircle2, Figma, Palette, Zap, Target, Users, Terminal, Globe, Search, BarChart3, Component, RefreshCw } from "lucide-react";
+import { GlassCard, PageTransition, Badge, SectionTitle } from "@/components/Common";
 import { cn } from "@/lib/utils";
 import { useMotionValue, useSpring, useTransform } from "motion/react";
 
@@ -189,6 +189,162 @@ const expertise = [
   }
 ];
 
+const designApproach = [
+  { 
+    title: "User understanding", 
+    icon: (
+      <motion.div
+        animate={{ x: [-2, 2, -2] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Users size={24} />
+      </motion.div>
+    ), 
+    desc: "Empathizing with users to uncover their real needs.", 
+    color: "text-blue-400",
+    visual: (
+      <div className="flex -space-x-2">
+        {[1, 2, 3].map(i => (
+          <motion.div 
+            key={i}
+            initial={{ scale: 0.8, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ delay: i * 0.1 }}
+            className="w-8 h-8 rounded-full border-2 border-background bg-muted overflow-hidden shadow-lg"
+          >
+            <img src={`https://picsum.photos/seed/user${i+10}/50/50`} alt="user" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+          </motion.div>
+        ))}
+        <motion.div 
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="w-8 h-8 rounded-full border-2 border-background bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white shadow-lg"
+        >
+          +
+        </motion.div>
+      </div>
+    )
+  },
+  { 
+    title: "Problem identification", 
+    icon: (
+      <motion.div
+        animate={{ scale: [1, 1.1, 1] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Search size={24} />
+      </motion.div>
+    ), 
+    desc: "Defining the core challenges before jumping into solutions.", 
+    color: "text-purple-400",
+    visual: (
+      <div className="relative w-16 h-10 border border-purple-500/30 rounded-lg bg-purple-500/5 flex items-center justify-center overflow-hidden">
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.5, 1],
+            opacity: [0.2, 0.5, 0.2]
+          }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="absolute inset-0 bg-purple-400/20 rounded-full blur-xl"
+        />
+        <div className="absolute inset-0 flex flex-col gap-1 p-2">
+          <div className="w-full h-1 bg-purple-500/20 rounded-full" />
+          <div className="w-2/3 h-1 bg-purple-500/20 rounded-full" />
+        </div>
+        <Target size={12} className="text-purple-400 relative z-10" />
+      </div>
+    )
+  },
+  { 
+    title: "Wireframing & prototyping", 
+    icon: (
+      <motion.div
+        animate={{ y: [-2, 2, -2] }}
+        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Layout size={24} />
+      </motion.div>
+    ), 
+    desc: "Mapping out the structure and flow of the experience.", 
+    color: "text-indigo-400",
+    visual: (
+      <div className="w-16 h-12 border-2 border-dashed border-indigo-500/30 rounded-md bg-indigo-500/5 flex flex-col gap-1.5 p-1.5 relative overflow-hidden">
+        <motion.div 
+          animate={{ y: ["-100%", "200%"] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+          className="absolute top-0 left-0 w-full h-1/2 bg-indigo-500/10 blur-sm"
+        />
+        <div className="w-full h-2 bg-indigo-500/20 rounded-sm" />
+        <div className="flex gap-1">
+          <div className="flex-1 h-4 bg-indigo-500/10 rounded-sm" />
+          <div className="flex-1 h-4 bg-indigo-500/10 rounded-sm" />
+        </div>
+      </div>
+    )
+  },
+  { 
+    title: "Simple UI design", 
+    icon: (
+      <motion.div
+        animate={{ rotate: [0, 10, -10, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Palette size={24} />
+      </motion.div>
+    ), 
+    desc: "Crafting clean, aesthetically pleasing interfaces.", 
+    color: "text-pink-400",
+    visual: (
+      <div className="flex gap-1.5">
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="w-4 h-4 rounded-full bg-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.6)]" 
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
+          className="w-4 h-4 rounded-full bg-purple-400 shadow-[0_0_15px_rgba(192,132,252,0.6)]" 
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
+          transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
+          className="w-4 h-4 rounded-full bg-pink-400 shadow-[0_0_15px_rgba(244,114,182,0.6)]" 
+        />
+      </div>
+    )
+  },
+  { 
+    title: "Iteration & testing", 
+    icon: (
+      <motion.div
+        animate={{ rotate: 360 }}
+        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+      >
+        <RefreshCw size={24} />
+      </motion.div>
+    ), 
+    desc: "Refining designs based on real user feedback.", 
+    color: "text-emerald-400",
+    visual: (
+      <div className="relative w-12 h-12 flex items-center justify-center">
+        <motion.div 
+          animate={{ rotate: -360 }}
+          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+          className="absolute inset-0 border-2 border-dashed border-emerald-500/30 rounded-full"
+        />
+        <motion.div 
+          animate={{ scale: [1, 1.2, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <RefreshCw size={16} className="text-emerald-400" />
+        </motion.div>
+      </div>
+    )
+  }
+];
+
 const tools = [
   { name: "Figma", logo: "https://southern-apricot-n5c9yizh2f.edgeone.app/figma.png" },
   { name: "Canva", logo: "https://shaggy-moccasin-idnqm9cb2n.edgeone.app/canva.png" },
@@ -336,6 +492,75 @@ export function Skills() {
                 </div>
               </motion.div>
             ))}
+          </div>
+
+          {/* Design Approach Section */}
+          <div className="mb-32 relative z-10">
+            <SectionTitle 
+              title="Design Approach" 
+              subtitle="My systematic process for creating meaningful digital experiences."
+            />
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mt-12">
+              {designApproach.map((item, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.35, delay: idx * 0.05, ease: "easeOut" }}
+                >
+                  <GlassCard className="h-full p-6 flex flex-col items-start text-left transition-all duration-500 group relative overflow-hidden border-white/5 hover:border-indigo-500/30 bg-[rgba(13,13,15,0.75)]">
+                    {/* Background Number */}
+                    <motion.div 
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 0.05, x: 0 }}
+                      transition={{ delay: 0.5 + idx * 0.1 }}
+                      className="absolute -right-4 -bottom-4 text-8xl font-black text-foreground select-none pointer-events-none"
+                    >
+                      0{idx + 1}
+                    </motion.div>
+                    
+                    {/* Icon with animated background */}
+                    <div className="relative mb-6">
+                      <motion.div 
+                        whileInView={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.2, 1] }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                        className={cn(
+                          "absolute inset-0 blur-xl rounded-full",
+                          item.color.replace("text-", "bg-")
+                        )} 
+                      />
+                      <motion.div 
+                        whileInView={{ rotate: [0, -5, 5, 0] }}
+                        transition={{ duration: 5, repeat: Infinity }}
+                        className={cn(
+                          "w-14 h-14 rounded-2xl bg-background/80 border border-border flex items-center justify-center relative z-10 shadow-lg",
+                          item.color
+                        )}
+                      >
+                        {item.icon}
+                      </motion.div>
+                    </div>
+
+                    {/* Visual UI Method Elements - Reduced transparency and size */}
+                    <div className="absolute top-4 right-4 opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none scale-90 origin-top-right">
+                      {item.visual}
+                    </div>
+
+                    <h3 className="text-lg font-bold mb-3 tracking-tight relative z-10 group-hover:text-indigo-400 transition-colors">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed relative z-10">{item.desc}</p>
+                    
+                    {/* Animated scanning line - now auto-animates on scroll */}
+                    <motion.div 
+                      animate={{ x: ["-100%", "200%"] }}
+                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" 
+                    />
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
           </div>
 
           <div className="mt-40 relative">

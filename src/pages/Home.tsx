@@ -15,6 +15,8 @@ export function Home() {
   const { theme } = useTheme();
   const particleColor = theme === "dark" ? "#FFFFFF" : "#09090b";
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [trackStyle, setTrackStyle] = React.useState({ top: 0, bottom: 0 });
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start center", "end center"]
@@ -22,26 +24,73 @@ export function Home() {
 
   const timelineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
+  React.useLayoutEffect(() => {
+    const updatePositions = () => {
+      if (!containerRef.current) return;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      const firstDot = containerRef.current.querySelector('[data-journey-dot="0"]');
+      const lastDot = containerRef.current.querySelector('[data-journey-dot="2"]');
+      
+      if (firstDot && lastDot) {
+        const firstRect = firstDot.getBoundingClientRect();
+        const lastRect = lastDot.getBoundingClientRect();
+        
+        const topOffset = (firstRect.top + firstRect.height / 2) - containerRect.top;
+        const bottomOffset = containerRect.bottom - (lastRect.top + lastRect.height / 2);
+        
+        setTrackStyle({
+          top: topOffset,
+          bottom: bottomOffset
+        });
+      }
+    };
+
+    updatePositions();
+    window.addEventListener("resize", updatePositions);
+    const timer = setTimeout(updatePositions, 150);
+    
+    return () => {
+      window.removeEventListener("resize", updatePositions);
+      clearTimeout(timer);
+    };
+  }, []);
+
   const journeySteps = [
     { 
-      year: "2024",
+      year: "2022 - 2024",
       title: "Bachelor of Engineering in Computer Science", 
-      subtitle: "Sri Eshwar College of Engineering",
+      subtitle: "Shri Ishwar College of Engineering",
       location: "Coimbatore, India",
-      period: "Year 2024",
-      icon: <GraduationCap size={20} />, 
-      desc: "Completed my four-year Bachelor of Engineering in Computer Science. Formed a strong engineering mindset, algorithmic thinking, and structural logic that I apply to simplify user interfaces and build scalable design systems.",
-      tags: ["Systems Logic", "Engineering Foundations", "Coimbatore"]
+      period: "June 2022 – May 2024",
+      icon: (
+        <svg 
+          width="20" 
+          height="20" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2.5" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          className="text-[#7C5CFC]"
+        >
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="M12 8v8" />
+          <path d="M9 11h6" />
+        </svg>
+      ), 
+      desc: "Completed my four-year Bachelor of Engineering in Computer Science with a GPA of 8.69. Formed a strong engineering mindset, algorithmic thinking, and structural logic that I apply to simplify user interfaces and build scalable design systems.",
+      tags: ["GPA: 8.69", "Systems Logic", "Engineering Foundations", "Coimbatore"]
     },
     { 
       year: "2024",
       title: "UI/UX Design Intern", 
-      subtitle: "App Innovation Technologies",
+      subtitle: "App Innovation Technology",
       location: "Coimbatore, India",
-      period: "Apr 2024 – Oct 2024",
+      period: "April 2024 – October 2024",
       icon: <Briefcase size={20} />, 
-      desc: "Gained hands-on professional industry experience. Developed deep empathy for users while mastering core design processes, interactive wireframing, and rigorous user testing under senior designers.",
-      tags: ["Hands-on UX", "Wireframing", "Agile Practice"]
+      desc: "Gained hands-on professional industry experience, securing an A-grade internship certification. Developed deep empathy for users while mastering core design processes, interactive wireframing, and rigorous user testing under senior designers.",
+      tags: ["A-Grade Certified", "Hands-on UX", "Wireframing", "Agile Practice"]
     },
     { 
       year: "2024 - 2026",
@@ -55,161 +104,7 @@ export function Home() {
     }
   ];
 
-  const designApproach = [
-    { 
-      title: "User understanding", 
-      icon: (
-        <motion.div
-          animate={{ x: [-2, 2, -2] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Users size={24} />
-        </motion.div>
-      ), 
-      desc: "Empathizing with users to uncover their real needs.", 
-      color: "text-blue-400",
-      visual: (
-        <div className="flex -space-x-2">
-          {[1, 2, 3].map(i => (
-            <motion.div 
-              key={i}
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              transition={{ delay: i * 0.1 }}
-              className="w-8 h-8 rounded-full border-2 border-background bg-muted overflow-hidden shadow-lg"
-            >
-              <img src={`https://picsum.photos/seed/user${i+10}/50/50`} alt="user" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-            </motion.div>
-          ))}
-          <motion.div 
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="w-8 h-8 rounded-full border-2 border-background bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white shadow-lg"
-          >
-            +
-          </motion.div>
-        </div>
-      )
-    },
-    { 
-      title: "Problem identification", 
-      icon: (
-        <motion.div
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Search size={24} />
-        </motion.div>
-      ), 
-      desc: "Defining the core challenges before jumping into solutions.", 
-      color: "text-purple-400",
-      visual: (
-        <div className="relative w-16 h-10 border border-purple-500/30 rounded-lg bg-purple-500/5 flex items-center justify-center overflow-hidden">
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.5, 1],
-              opacity: [0.2, 0.5, 0.2]
-            }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="absolute inset-0 bg-purple-400/20 rounded-full blur-xl"
-          />
-          <div className="absolute inset-0 flex flex-col gap-1 p-2">
-            <div className="w-full h-1 bg-purple-500/20 rounded-full" />
-            <div className="w-2/3 h-1 bg-purple-500/20 rounded-full" />
-          </div>
-          <Target size={12} className="text-purple-400 relative z-10" />
-        </div>
-      )
-    },
-    { 
-      title: "Wireframing & prototyping", 
-      icon: (
-        <motion.div
-          animate={{ y: [-2, 2, -2] }}
-          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Layout size={24} />
-        </motion.div>
-      ), 
-      desc: "Mapping out the structure and flow of the experience.", 
-      color: "text-indigo-400",
-      visual: (
-        <div className="w-16 h-12 border-2 border-dashed border-indigo-500/30 rounded-md bg-indigo-500/5 flex flex-col gap-1.5 p-1.5 relative overflow-hidden">
-          <motion.div 
-            animate={{ y: ["-100%", "200%"] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 left-0 w-full h-1/2 bg-indigo-500/10 blur-sm"
-          />
-          <div className="w-full h-2 bg-indigo-500/20 rounded-sm" />
-          <div className="flex gap-1">
-            <div className="flex-1 h-4 bg-indigo-500/10 rounded-sm" />
-            <div className="flex-1 h-4 bg-indigo-500/10 rounded-sm" />
-          </div>
-        </div>
-      )
-    },
-    { 
-      title: "Simple UI design", 
-      icon: (
-        <motion.div
-          animate={{ rotate: [0, 10, -10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        >
-          <Palette size={24} />
-        </motion.div>
-      ), 
-      desc: "Crafting clean, aesthetically pleasing interfaces.", 
-      color: "text-pink-400",
-      visual: (
-        <div className="flex gap-1.5">
-          <motion.div 
-            animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-4 h-4 rounded-full bg-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.6)]" 
-          />
-          <motion.div 
-            animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
-            transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-            className="w-4 h-4 rounded-full bg-purple-400 shadow-[0_0_15px_rgba(192,132,252,0.6)]" 
-          />
-          <motion.div 
-            animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
-            transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-            className="w-4 h-4 rounded-full bg-pink-400 shadow-[0_0_15px_rgba(244,114,182,0.6)]" 
-          />
-        </div>
-      )
-    },
-    { 
-      title: "Iteration & testing", 
-      icon: (
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-        >
-          <RefreshCw size={24} />
-        </motion.div>
-      ), 
-      desc: "Refining designs based on real user feedback.", 
-      color: "text-emerald-400",
-      visual: (
-        <div className="relative w-12 h-12 flex items-center justify-center">
-          <motion.div 
-            animate={{ rotate: -360 }}
-            transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-            className="absolute inset-0 border-2 border-dashed border-emerald-500/30 rounded-full"
-          />
-          <motion.div 
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <RefreshCw size={16} className="text-emerald-400" />
-          </motion.div>
-        </div>
-      )
-    }
-  ];
+
 
   return (
     <PageTransition>
@@ -475,7 +370,7 @@ export function Home() {
         </div>
 
         {/* 1. SECTION: My Journey */}
-        <section className="mb-40 relative z-10 px-6 md:px-[100px]">
+        <section className="mb-12 relative z-10 px-6 md:px-[100px]">
           <SectionTitle 
             title="My Journey" 
             subtitle="My step-by-step evolution from a computer science student to a professional designer."
@@ -485,25 +380,32 @@ export function Home() {
           <div className="relative max-w-5xl mx-auto py-12" ref={containerRef}>
             
             {/* Straight glowing road line connecting the dots of years (z-10 layer to come first and sit above backgrounds/card margins) */}
-            <div className="absolute left-[16px] md:left-[37.5%] -translate-x-1/2 top-4 bottom-4 w-[4px] z-10 pointer-events-none">
-              {/* Faint base dashed line */}
-              <div className="w-full h-full border-l border-dashed border-white/20" />
-              
-              {/* Active animated progress line that grows perfectly with scrolling */}
-              <motion.div 
-                style={{ height: timelineHeight }}
-                className="absolute top-0 left-0 w-[2px] bg-gradient-to-b from-[#7C5CFC] via-[#A855F7] to-[#EC4899] origin-top shadow-[0_0_15px_rgba(124,92,252,0.6)]"
-              />
+            <div 
+              className="absolute inset-0 grid grid-cols-12 gap-4 md:gap-8 pointer-events-none z-10"
+              style={{ top: trackStyle.top, bottom: trackStyle.bottom }}
+            >
+              <div className="col-span-12 md:col-span-1 md:col-start-5 h-full relative">
+                <div className="absolute left-[16px] md:left-1/2 -translate-x-1/2 top-0 bottom-0 w-[4px]">
+                  {/* Faint base dashed line */}
+                  <div className="w-full h-full border-l border-dashed border-white/20" />
+                  
+                  {/* Active animated progress line that grows perfectly with scrolling */}
+                  <motion.div 
+                    style={{ height: timelineHeight }}
+                    className="absolute top-0 left-0 w-[2px] bg-gradient-to-b from-[#7C5CFC] via-[#A855F7] to-[#EC4899] origin-top shadow-[0_0_15px_rgba(124,92,252,0.6)]"
+                  />
 
-              {/* Active blinking tip pointer that travels with the scroll progress */}
-              <motion.div
-                style={{ top: timelineHeight }}
-                className="absolute left-[-5px] -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.9)] border-2 border-white flex items-center justify-center"
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <span className="w-1 h-1 rounded-full bg-white animate-ping" />
-              </motion.div>
+                  {/* Active blinking tip pointer that travels with the scroll progress */}
+                  <motion.div
+                    style={{ top: timelineHeight }}
+                    className="absolute left-[-5px] -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.9)] border-2 border-white flex items-center justify-center"
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    <span className="w-1 h-1 rounded-full bg-white animate-ping" />
+                  </motion.div>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-12 relative z-20">
@@ -550,7 +452,10 @@ export function Home() {
  
                   {/* CENTER COLUMN: Road Joint Dot / Marker */}
                   <div className="col-span-12 md:col-span-1 flex md:justify-center items-center relative py-2 md:py-0">
-                    <div className="absolute left-[16px] md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-[#09090b]/90 border border-[#7C5CFC]/50 group-hover:border-[#7C5CFC] shadow-[0_0_20px_rgba(124,92,252,0.35)] z-30 transition-all duration-300">
+                    <div 
+                      data-journey-dot={idx}
+                      className="absolute left-[16px] md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-[#09090b]/90 border border-[#7C5CFC]/50 group-hover:border-[#7C5CFC] shadow-[0_0_20px_rgba(124,92,252,0.35)] z-30 transition-all duration-300"
+                    >
                       <div className="w-3.5 h-3.5 rounded-full bg-[#7C5CFC] flex items-center justify-center text-white">
                         <div className="w-1.5 h-1.5 rounded-full bg-white" />
                       </div>
@@ -586,7 +491,10 @@ export function Home() {
                           <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#7C5CFC]">
                             {step.subtitle}
                           </span>
-                          <h4 className="text-xl md:text-2xl font-black text-white tracking-tight mt-1 group-hover:text-[#8D71FF] transition-colors duration-300">
+                          <h4 className={cn(
+                            "text-xl md:text-2xl font-black text-white tracking-tight mt-1 transition-colors duration-300",
+                            (step.title.includes("UI/UX") || step.title.includes("Designer")) ? "" : "group-hover:text-[#8D71FF]"
+                          )}>
                             {step.title}
                           </h4>
                         </div>
@@ -603,14 +511,22 @@ export function Home() {
                       {/* Card Tags */}
                       {step.tags && (
                         <div className="flex flex-wrap gap-2">
-                          {step.tags.map((tag, tIdx) => (
-                            <span 
-                              key={tIdx} 
-                              className="text-[10px] font-bold uppercase tracking-widest text-[#A1A1AA]/60 bg-white/5 border border-white/5 px-2.5 py-1 rounded-md"
-                            >
-                              {tag}
-                            </span>
-                          ))}
+                          {step.tags.map((tag, tIdx) => {
+                            const isGPA = tag.includes("GPA");
+                            return (
+                              <span 
+                                key={tIdx} 
+                                className={cn(
+                                  "text-[10px] font-extrabold uppercase tracking-widest px-3 py-1.5 rounded-lg transition-all duration-300",
+                                  isGPA 
+                                    ? "text-white bg-[#7C5CFC]/20 border-2 border-[#7C5CFC]/60 shadow-[0_0_15px_rgba(124,92,252,0.4)]" 
+                                    : "text-[#A1A1AA]/60 bg-white/5 border border-white/5"
+                                )}
+                              >
+                                {tag}
+                              </span>
+                            );
+                          })}
                         </div>
                       )}
                     </GlassCard>
@@ -622,77 +538,10 @@ export function Home() {
           </div>
         </section>
 
-        {/* 2. SECTION: Design Approach */}
-        <section className="mb-32 relative z-10 px-6 md:px-[100px]">
-          <SectionTitle 
-            title="Design Approach" 
-            subtitle="My systematic process for creating meaningful digital experiences."
-          />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {designApproach.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.35, delay: idx * 0.05, ease: "easeOut" }}
-              >
-                <GlassCard className="h-full p-6 flex flex-col items-start text-left transition-all duration-500 group relative overflow-hidden border-white/5 hover:border-indigo-500/30">
-                  {/* Background Number */}
-                  <motion.div 
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 0.05, x: 0 }}
-                    transition={{ delay: 0.5 + idx * 0.1 }}
-                    className="absolute -right-4 -bottom-4 text-8xl font-black text-foreground select-none pointer-events-none"
-                  >
-                    0{idx + 1}
-                  </motion.div>
-                  
-                  {/* Icon with animated background */}
-                  <div className="relative mb-6">
-                    <motion.div 
-                      whileInView={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.2, 1] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      className={cn(
-                        "absolute inset-0 blur-xl rounded-full",
-                        item.color.replace("text-", "bg-")
-                      )} 
-                    />
-                    <motion.div 
-                      whileInView={{ rotate: [0, -5, 5, 0] }}
-                      transition={{ duration: 5, repeat: Infinity }}
-                      className={cn(
-                        "w-14 h-14 rounded-2xl bg-background/80 border border-border flex items-center justify-center relative z-10 shadow-lg",
-                        item.color
-                      )}
-                    >
-                      {item.icon}
-                    </motion.div>
-                  </div>
 
-                  {/* Visual UI Method Elements - Reduced transparency and size */}
-                  <div className="absolute top-4 right-4 opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none scale-90 origin-top-right">
-                    {item.visual}
-                  </div>
-
-                  <h3 className="text-lg font-bold mb-3 tracking-tight relative z-10 group-hover:text-indigo-400 transition-colors">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed relative z-10">{item.desc}</p>
-                  
-                  {/* Animated scanning line - now auto-animates on scroll */}
-                  <motion.div 
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" 
-                  />
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </section>
 
         {/* 3. SECTION: Let’s Connect */}
-        <section className="mb-32 pt-20 md:pt-32 relative z-10 px-6 md:px-[100px]">
+        <section className="mb-20 pt-4 md:pt-6 relative z-10 px-6 md:px-[100px]">
           <motion.div 
             initial={{ opacity: 0, y: 20, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
