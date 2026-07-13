@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Download, Code, GraduationCap, Search, Palette, Briefcase, Users, BookOpen, Layout, RefreshCw, Zap, Target, Mail, Send, Sparkles } from "lucide-react";
+import { ArrowRight, Download, Code, GraduationCap, Search, Palette, Briefcase, Users, BookOpen, Layout, RefreshCw, Zap, Target, Mail, Send, Sparkles, PenTool, MousePointer, Monitor } from "lucide-react";
 import { Badge, GlassCard, SectionTitle, PageTransition } from "@/components/Common";
 import { Link } from "react-router-dom";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
@@ -23,11 +23,36 @@ export function Home() {
   const timelineHeight = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
 
   const journeySteps = [
-    { title: "Curiosity about digital products", icon: <Search size={20} />, desc: "Always wondered how apps were built to be so engaging." },
-    { title: "UI/UX interest during academics", icon: <Palette size={20} />, desc: "Discovered the perfect blend of logic and creativity." },
-    { title: "Real-world project experience", icon: <Briefcase size={20} />, desc: "Started applying design principles to actual products." },
-    { title: "Team collaboration & leadership", icon: <Users size={20} />, desc: "Learned the value of diverse perspectives in design." },
-    { title: "Continuous learning", icon: <BookOpen size={20} />, desc: "Staying updated with the latest design trends and tools." }
+    { 
+      year: "2024",
+      title: "Bachelor of Engineering in Computer Science", 
+      subtitle: "Sri Eshwar College of Engineering",
+      location: "Coimbatore, India",
+      period: "Year 2024",
+      icon: <GraduationCap size={20} />, 
+      desc: "Completed my four-year Bachelor of Engineering in Computer Science. Formed a strong engineering mindset, algorithmic thinking, and structural logic that I apply to simplify user interfaces and build scalable design systems.",
+      tags: ["Systems Logic", "Engineering Foundations", "Coimbatore"]
+    },
+    { 
+      year: "2024",
+      title: "UI/UX Design Intern", 
+      subtitle: "App Innovation Technologies",
+      location: "Coimbatore, India",
+      period: "Apr 2024 – Oct 2024",
+      icon: <Briefcase size={20} />, 
+      desc: "Gained hands-on professional industry experience. Developed deep empathy for users while mastering core design processes, interactive wireframing, and rigorous user testing under senior designers.",
+      tags: ["Hands-on UX", "Wireframing", "Agile Practice"]
+    },
+    { 
+      year: "2024 - 2026",
+      title: "UI/UX Designer", 
+      subtitle: "Sajal Tech Solutions",
+      location: "Remote",
+      period: "Nov 2024 – April 2026",
+      icon: <Briefcase size={20} />, 
+      desc: "Owned end-to-end design streams for SaaS dashboards and multi-platform experiences. Collaborated with global teams to design active, live client projects using polished, high-fidelity design systems.",
+      tags: ["SaaS Dashboards", "Design Systems", "Live Client Projects"]
+    }
   ];
 
   const designApproach = [
@@ -186,262 +211,360 @@ export function Home() {
     }
   ];
 
-  const whatIBring = [
-    { 
-      title: "Problem-solving", 
-      icon: <Zap size={24} />, 
-      desc: "Turning complex hurdles into seamless user paths.",
-      visual: (
-        <div className="relative w-full h-32 flex items-center justify-center overflow-hidden rounded-xl bg-indigo-500/5 border border-indigo-500/10 mt-6">
-          <div className="absolute inset-0 opacity-20">
-            <svg className="w-full h-full" viewBox="0 0 100 100">
-              <motion.path
-                d="M 10 50 Q 25 20 40 50 T 70 50 T 90 50"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                className="text-indigo-500"
-                animate={{ pathLength: [0, 1], pathOffset: [0, 1] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              />
-            </svg>
-          </div>
-          <div className="relative z-10 flex gap-2">
-            <div className="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center text-indigo-400">
-              <Target size={16} />
-            </div>
-            <ArrowRight size={16} className="text-muted-foreground mt-2" />
-            <div className="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center text-green-400">
-              <Zap size={16} />
-            </div>
-          </div>
-        </div>
-      )
-    },
-    { 
-      title: "Clean UI skills", 
-      icon: <Layout size={24} />, 
-      desc: "Minimalist aesthetics with maximum functionality.",
-      visual: (
-        <div className="mt-6 grid grid-cols-3 gap-2 h-32">
-          <div className="col-span-2 bg-indigo-500/5 rounded-xl border border-indigo-500/10 p-3 flex flex-col gap-2">
-            <div className="w-full h-2 bg-indigo-500/20 rounded-full" />
-            <div className="w-2/3 h-2 bg-indigo-500/20 rounded-full" />
-            <div className="mt-auto flex gap-1">
-              <div className="w-4 h-4 rounded-full bg-indigo-500/40" />
-              <div className="w-4 h-4 rounded-full bg-purple-500/40" />
-            </div>
-          </div>
-          <div className="bg-indigo-500/5 rounded-xl border border-indigo-500/10 p-3 flex flex-col items-center gap-2">
-            <div className="w-6 h-6 rounded-full bg-indigo-500/20" />
-            <div className="w-full h-1 bg-indigo-500/20 rounded-full" />
-            <div className="w-full h-1 bg-indigo-500/20 rounded-full" />
-          </div>
-        </div>
-      )
-    },
-    { 
-      title: "Attention to detail", 
-      icon: <Target size={24} />, 
-      desc: "Pixel-perfect precision in every component.",
-      visual: (
-        <div className="mt-6 relative h-32 w-full bg-indigo-500/5 rounded-xl border border-indigo-500/10 overflow-hidden">
-          <div className="absolute inset-0 grid grid-cols-6 grid-rows-4 opacity-10">
-            {[...Array(24)].map((_, i) => (
-              <div key={i} className="border-[0.5px] border-indigo-500" />
-            ))}
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="relative">
-              <div className="w-16 h-16 border-2 border-dashed border-indigo-500/40 rounded-lg" />
-              <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-indigo-500" />
-              <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-indigo-500" />
-              <div className="absolute top-1/2 left-full ml-2 -translate-y-1/2 text-[10px] font-mono text-indigo-500">64px</div>
-            </div>
-          </div>
-        </div>
-      )
-    },
-    { 
-      title: "Team collaboration", 
-      icon: <Users size={24} />, 
-      desc: "Bridging the gap between design and development.",
-      visual: (
-        <div className="mt-6 flex items-center justify-center h-32 bg-indigo-500/5 rounded-xl border border-indigo-500/10">
-          <div className="flex -space-x-4">
-            {[1, 2, 3].map(i => (
-              <motion.div 
-                key={i}
-                animate={{ x: [0, i * 2, 0] }}
-                transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-                className="w-12 h-12 rounded-full border-4 border-background bg-muted flex items-center justify-center overflow-hidden shadow-xl"
-              >
-                <img src={`https://picsum.photos/seed/user${i}/100/100`} alt="user" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-              </motion.div>
-            ))}
-            <div className="w-12 h-12 rounded-full border-4 border-background bg-indigo-500 flex items-center justify-center text-white text-xs font-bold shadow-xl z-10">
-              +5
-            </div>
-          </div>
-        </div>
-      )
-    }
-  ];
-
   return (
     <PageTransition>
-      <div className="relative min-h-screen w-full overflow-hidden">
-        {/* Sparkles Background Section - Now truly full screen and reaches top */}
-        <div className="fixed inset-0 w-full h-full bg-background flex flex-col items-center justify-center overflow-hidden z-0 translate-y-[20px]">
-          <div className="w-full h-full absolute inset-0 z-0">
-            <SparklesCore
-              id="tsparticlesfullpage"
-              background="transparent"
-              minSize={0.6}
-              maxSize={1.4}
-              particleDensity={100}
-              className="w-full h-full"
-              particleColor={particleColor}
-            />
-          </div>
-          
-          <div className="w-full max-w-[40rem] h-[175px] relative z-10 mt-[156px] md:mt-[220px]">
-            {/* Gradients */}
-            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-[2px] w-3/4 blur-sm" />
-            <div className="absolute inset-x-20 top-0 bg-gradient-to-r from-transparent via-indigo-500 to-transparent h-px w-3/4" />
-            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-[5px] w-1/4 blur-sm" />
-            <div className="absolute inset-x-60 top-0 bg-gradient-to-r from-transparent via-sky-500 to-transparent h-px w-1/4" />
-
-            {/* Radial Gradient to prevent sharp edges */}
-            <div className="absolute inset-0 w-full h-full bg-background [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
-          </div>
+      <div className="relative min-h-screen w-full overflow-hidden bg-[#0B0B0C]">
+        {/* High-visibility grid background (55% opacity) & a single radial glow centered behind the Hero section */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-55">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#7C5CFC]/10 rounded-full blur-[140px]" />
         </div>
 
-        <section className="min-h-screen flex flex-col justify-center items-center text-center relative z-10 pt-32 md:pt-44 pb-16 px-6 md:px-[100px]">
-          <div className="relative z-20 flex flex-col items-center -mt-[23px]">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="mb-8 relative"
-            >
-              <div className="absolute -inset-4 accent-gradient blur-2xl opacity-20 rounded-full animate-pulse" />
-              <Badge className="mb-4 text-indigo-400 border-indigo-500/20 bg-indigo-500/5 flex items-center gap-2 px-4 py-1.5">
-                <div className="relative flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <motion.div 
-                    animate={{ opacity: [0.4, 1, 0.4], scale: [1, 1.8, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                    className="absolute w-2 h-2 rounded-full bg-green-400 blur-[1px]"
-                  />
-                </div>
-                Available for Opportunities
-              </Badge>
-            </motion.div>
-            
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 drop-shadow-sm w-full flex justify-center"
-            >
-              <LayoutTextFlip
-                text="Hey, I’m "
-                words={["Naveen Raja", "UI/UX Designer"]}
-                className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight"
-              />
-            </motion.div>
-            
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg md:text-xl text-muted-foreground max-w-4xl mb-10 leading-relaxed font-medium px-4 whitespace-nowrap hidden md:block"
-            >
-              Designing intuitive, user-centered digital experiences that solve real problems.
-            </motion.p>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-base text-muted-foreground max-w-xs mb-10 leading-relaxed font-medium px-4 md:hidden"
-            >
-              Designing intuitive, user-centered digital experiences that solve real problems.
-            </motion.p>
+        {/* Floating Figma-like workspace UI / digital design elements in Hero background */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+          {/* Vector path with anchor points and cursor */}
+          <motion.div 
+            animate={{ y: [-15, 15, -15], x: [-5, 5, -5] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[20%] left-[8%] opacity-20 hover:opacity-50 transition-opacity duration-300 hidden md:block"
+          >
+            <div className="relative">
+              <svg width="180" height="100" viewBox="0 0 180 100" fill="none">
+                <path d="M10 80 Q 90 10, 170 80" stroke="rgba(124,92,252,0.4)" strokeWidth="1.5" strokeDasharray="4 4" />
+                <path d="M10 80 Q 90 10, 170 80" stroke="#7C5CFC" strokeWidth="1.5" />
+                <circle cx="10" cy="80" r="4" fill="#0B0B0C" stroke="#7C5CFC" strokeWidth="2" />
+                <circle cx="90" cy="45" r="4" fill="#7C5CFC" />
+                <circle cx="170" cy="80" r="4" fill="#0B0B0C" stroke="#7C5CFC" strokeWidth="2" />
+                <line x1="90" y1="45" x2="90" y2="10" stroke="#7C5CFC" strokeWidth="1" />
+                <circle cx="90" cy="10" r="3" fill="#7C5CFC" />
+              </svg>
+              <div className="absolute top-[45px] left-[98px] flex items-center gap-1.5 bg-[#111113] border border-white/10 rounded px-1.5 py-0.5 text-[8px] font-mono text-[#7C5CFC]">
+                <MousePointer size={8} className="rotate-[-90deg] fill-[#7C5CFC]" />
+                <span>AnchorPoint</span>
+              </div>
+            </div>
+          </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex justify-center"
-            >
-              <Link to="/work">
-                <HoverBorderGradient
-                  containerClassName="rounded-full"
-                  as="div"
-                  className="bg-background text-foreground flex items-center space-x-2 px-6 py-2"
-                >
-                  <span className="font-semibold flex items-center gap-2">
-                    View My Work <ArrowRight size={18} />
+          {/* Figma Cursor coordinate label */}
+          <motion.div 
+            animate={{ y: [15, -15, 15], rotate: [0, 5, -5, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute top-[65%] left-[8%] opacity-25 hidden lg:block"
+          >
+            <div className="flex items-center gap-1 bg-[#7C5CFC] text-white text-[10px] font-mono font-bold px-2 py-1 rounded-sm shadow-lg shadow-[#7C5CFC]/20">
+              <MousePointer size={10} className="fill-white" />
+              <span>Naveen_Raja</span>
+            </div>
+          </motion.div>
+
+          {/* Wireframe box with sizing dimensions */}
+          <motion.div 
+            animate={{ y: [-10, 10, -10] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+            className="absolute top-[25%] right-[10%] opacity-15 hover:opacity-40 transition-opacity duration-300 hidden md:block"
+          >
+            <div className="border border-dashed border-white/20 p-4 rounded-lg flex flex-col items-center justify-center relative bg-white/[0.01]">
+              <div className="absolute -top-2 left-4 px-1.5 py-0.5 bg-[#111113] text-[8px] font-mono text-[#A1A1AA]/60 border border-white/5 rounded">
+                Frame: Hero_Container
+              </div>
+              <div className="w-40 h-24 border border-white/10 rounded flex items-center justify-center relative">
+                <span className="text-[10px] font-mono text-[#A1A1AA]/40">W: 1280 H: 720</span>
+                <div className="absolute -top-1 -left-1 w-2 h-2 bg-[#7C5CFC]" />
+                <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#7C5CFC]" />
+                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#7C5CFC]" />
+                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#7C5CFC]" />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Pen Tool tooltip */}
+          <motion.div 
+            animate={{ y: [20, -20, 20], x: [10, -10, 10] }}
+            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="absolute top-[75%] right-[15%] opacity-20 hidden md:block"
+          >
+            <div className="flex items-center gap-1.5 bg-[#111113] border border-white/10 rounded-full px-3 py-1.5 text-xs text-white/70">
+              <PenTool size={12} className="text-[#7C5CFC]" />
+              <span className="font-mono text-[10px] tracking-wider uppercase">Pen Tool</span>
+            </div>
+          </motion.div>
+
+          {/* Floating pen icon tooltip (moved from journey to hero) */}
+          <motion.div 
+            animate={{ y: [-12, 12, -12], rotate: [0, 8, -8, 0] }}
+            transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+            className="absolute top-[15%] right-[24%] opacity-20 hover:opacity-50 transition-opacity duration-300 hidden lg:block text-indigo-400"
+          >
+            <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 p-2 rounded-xl backdrop-blur-sm">
+              <PenTool size={14} className="text-[#7C5CFC]" />
+              <span className="text-[8px] font-mono uppercase tracking-wider text-white/70">Vector.Edit</span>
+            </div>
+          </motion.div>
+
+          {/* Floating mouse pointer tooltip (moved from journey to hero) */}
+          <motion.div 
+            animate={{ y: [12, -12, 12], x: [-6, 6, -6] }}
+            transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+            className="absolute top-[68%] right-[22%] opacity-20 hover:opacity-50 transition-opacity duration-300 hidden lg:block text-pink-400"
+          >
+            <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 p-2 rounded-xl backdrop-blur-sm">
+              <MousePointer size={14} className="text-[#A855F7]" />
+              <span className="text-[8px] font-mono uppercase tracking-wider text-white/70">Design.Interact</span>
+            </div>
+          </motion.div>
+
+          {/* Floating Screen Widget wireframe (moved from journey to hero) */}
+          <motion.div 
+            animate={{ y: [-15, 15, -15], rotate: [-2, 2, -2] }}
+            transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
+            className="absolute top-[35%] left-[25%] opacity-15 hover:opacity-40 transition-opacity duration-300 hidden xl:block border border-dashed border-white/10 rounded-lg p-3 bg-white/[0.01] backdrop-blur-sm"
+          >
+            <div className="w-24 h-16 border border-white/10 rounded relative flex items-center justify-center">
+              <div className="absolute top-1 left-1 flex gap-1">
+                <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+                <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+              </div>
+              <Monitor size={14} className="text-white/20" />
+              <span className="absolute bottom-1 right-1 text-[6px] font-mono text-white/20">Canvas</span>
+            </div>
+          </motion.div>
+
+          {/* Floating UI trends for 2026 */}
+          <motion.div 
+            animate={{ y: [-8, 8, -8] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            className="absolute top-[48%] left-[12%] opacity-20 hidden xl:block"
+          >
+            <div className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-md flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
+              <span className="text-[10px] font-bold uppercase tracking-widest font-mono text-white/80">Spatial UI</span>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [8, -8, 8] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+            className="absolute top-[52%] right-[10%] opacity-20 hidden xl:block"
+          >
+            <div className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-md flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
+              <span className="text-[10px] font-bold uppercase tracking-widest font-mono text-white/80">Bento UX</span>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Hero Section Container (Full immersive viewport height) */}
+        <section className="relative z-10 w-full min-h-[100vh] md:min-h-screen flex flex-col justify-center items-center pt-36 md:pt-44 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+          <div className="w-full grid grid-cols-12 gap-8 items-center justify-center">
+            <div className="col-span-12 lg:col-start-2 lg:col-span-10 xl:col-start-3 xl:col-span-8 flex flex-col items-center text-center">
+              
+              {/* Availability Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                className="mb-8"
+              >
+                <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#111113] border border-[rgba(255,255,255,0.08)] shadow-[0_2px_12px_rgba(0,0,0,0.5)] hover:border-[rgba(255,255,255,0.2)] transition-colors duration-300">
+                  <div className="relative flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-green-500" />
+                    <motion.div 
+                      animate={{ opacity: [0.4, 1, 0.4], scale: [1, 2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                      className="absolute w-2 h-2 rounded-full bg-green-400 blur-[1px]"
+                    />
+                  </div>
+                  <span className="text-xs font-semibold tracking-wide text-[#A1A1AA] select-none">
+                    Available for Full-time Opportunities
                   </span>
-                </HoverBorderGradient>
-              </Link>
-            </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Subheading: Role */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+                className="mb-2"
+              >
+                <span className="text-xs sm:text-sm font-bold tracking-[0.25em] text-[#7C5CFC] uppercase select-none">
+                  UI/UX Designer
+                </span>
+              </motion.div>
+
+              {/* Headline: Name */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-white leading-none mb-6 select-none bg-gradient-to-b from-white to-[#A1A1AA] bg-clip-text text-transparent"
+              >
+                Naveen Raja
+              </motion.h1>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+                className="text-[#A1A1AA] max-w-2xl mb-12 leading-relaxed font-normal text-pretty text-base sm:text-lg md:text-xl"
+              >
+                Designing intuitive SaaS products, dashboards, and mobile experiences that simplify complexity and solve real user problems.
+              </motion.p>
+
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+              >
+                {/* Primary Button - Filled */}
+                <Link to="/work" className="w-full sm:w-auto">
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full sm:w-auto px-8 py-3.5 bg-[#7C5CFC] text-white rounded-full text-sm font-semibold tracking-wide flex items-center justify-center gap-2 group transition-all duration-300 shadow-[0_4px_20px_rgba(124,92,252,0.25)] hover:shadow-[0_8px_30px_rgba(124,92,252,0.45)] hover:bg-[#8D71FF]"
+                  >
+                    View Projects
+                    <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  </motion.div>
+                </Link>
+
+                {/* Secondary Button - Outlined Contact */}
+                <Link to="/contact" className="w-full sm:w-auto">
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="w-full sm:w-auto px-8 py-3.5 bg-transparent text-[#FFFFFF] hover:text-white border border-[rgba(255,255,255,0.08)] hover:border-[#7C5CFC]/40 rounded-full text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-all duration-300"
+                  >
+                    Let's Talk
+                  </motion.div>
+                </Link>
+              </motion.div>
+
+            </div>
           </div>
         </section>
 
         {/* 1. SECTION: My Journey */}
-        <section className="mb-32 relative z-10 px-6 md:px-[100px]" ref={containerRef}>
+        <section className="mb-40 relative z-10 px-6 md:px-[100px]" ref={containerRef}>
           <SectionTitle 
             title="My Journey" 
-            subtitle="How I evolved from a curious student to a professional designer."
+            subtitle="My step-by-step evolution from a computer science student to a professional designer."
           />
           
-          <div className="relative max-w-4xl mx-auto">
-            {/* Timeline Line */}
-            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-border -translate-x-1/2 overflow-hidden">
+          <div className="relative max-w-5xl mx-auto py-12">
+            
+            {/* Straight glowing road line connecting the dots of years */}
+            <div className="absolute left-[16px] md:left-1/2 -translate-x-1/2 top-0 bottom-0 w-[4px] z-0 pointer-events-none">
+              {/* Faint base dashed line */}
+              <div className="w-full h-full border-l border-dashed border-white/20" />
+              
+              {/* Active animated progress line */}
               <motion.div 
                 style={{ height: timelineHeight }}
-                className="w-full bg-indigo-500 origin-top"
+                className="absolute top-0 left-0 w-[2px] bg-gradient-to-b from-[#7C5CFC] via-[#A855F7] to-[#EC4899] origin-top shadow-[0_0_15px_rgba(124,92,252,0.6)]"
               />
             </div>
-
-            <div className="space-y-12">
+          </div>
+ 
+          <div className="relative max-w-5xl mx-auto py-12">
+            <div className="space-y-12 relative z-10">
               {journeySteps.map((step, idx) => (
-                <div key={idx} className={cn(
-                  "relative flex items-center gap-8 md:gap-0",
-                  idx % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-                )}>
-                  {/* Timeline Dot */}
-                  <motion.div 
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: false, margin: "-100px" }}
-                    transition={{ duration: 0.4, delay: 0.2 }}
-                    className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-indigo-500 -translate-x-1/2 z-10 shadow-[0_0_10px_rgba(99,102,241,0.5)]" 
-                  />
+                <div key={idx} className="grid grid-cols-12 gap-4 md:gap-8 items-center relative py-6">
                   
-                  {/* Content Card */}
+                  {/* LEFT COLUMN: Year with elegant typography (animates from left to inside) */}
                   <motion.div 
-                    initial={{ opacity: 0, x: idx % 2 === 0 ? 50 : -50, scale: 0.9 }}
-                    whileInView={{ opacity: 1, x: 0, scale: 1 }}
+                    initial={{ opacity: 0, x: -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: false, margin: "-100px" }}
-                    transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.23, 1, 0.32, 1] }}
-                    className="w-full md:w-[45%]"
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    className="col-span-12 md:col-span-4 flex flex-col md:items-end text-left md:text-right relative pl-10 md:pl-0"
                   >
-                    <GlassCard className="p-6 hover:border-indigo-500/30 transition-all duration-300 group relative overflow-hidden">
-                      <div className="absolute inset-0 bg-indigo-500/[0.01] group-hover:bg-indigo-500/[0.03] transition-colors" />
-                      <div className="flex items-center gap-4 mb-4 relative z-10">
-                        <motion.div 
-                          whileInView={{ scale: [1, 1.1, 1] }}
-                          transition={{ duration: 2, repeat: Infinity, delay: idx * 0.2 }}
-                          className="w-10 h-10 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400"
-                        >
-                          {step.icon}
-                        </motion.div>
-                        <h3 className="text-xl font-bold text-foreground group-hover:text-indigo-400 transition-colors">{step.title}</h3>
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#7C5CFC] mb-1">
+                      {step.period}
+                    </span>
+                    <motion.h3 
+                      animate={{ 
+                        backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                        y: [0, -3, 0]
+                      }}
+                      transition={{ 
+                        backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
+                        y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.3 }
+                      }}
+                      className="text-5xl md:text-6xl font-black font-mono tracking-tighter bg-gradient-to-r from-white via-purple-300 to-white bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(124,92,252,0.25)] select-none"
+                    >
+                      {step.year}
+                    </motion.h3>
+                    <span className="text-xs text-[#A1A1AA]/50 font-medium mt-1">
+                      {step.location}
+                    </span>
+                  </motion.div>
+ 
+                  {/* CENTER COLUMN: Road Joint Dot / Marker */}
+                  <div className="col-span-12 md:col-span-1 flex md:justify-center items-center relative py-2 md:py-0">
+                    <div className="absolute left-[16px] md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-[#09090b]/90 border border-white/10 group-hover:border-[#7C5CFC] shadow-[0_0_15px_rgba(124,92,252,0.15)] z-20 transition-all duration-300">
+                      <div className="w-3.5 h-3.5 rounded-full bg-[#7C5CFC] flex items-center justify-center text-white">
+                        <div className="w-1.5 h-1.5 rounded-full bg-white" />
                       </div>
-                      <p className="text-muted-foreground leading-relaxed relative z-10">{step.desc}</p>
+                      <motion.div 
+                        animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.7, 0.3] }}
+                        transition={{ duration: 2.5, repeat: Infinity, delay: idx * 0.4 }}
+                        className="absolute w-7 h-7 rounded-full bg-[#7C5CFC]/30 blur-[1px] pointer-events-none"
+                      />
+                    </div>
+                  </div>
+ 
+                  {/* RIGHT COLUMN: Interactive Content Card (animates from right to inside at the same time) */}
+                  <motion.div 
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false, margin: "-100px" }}
+                    transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                    className="col-span-12 md:col-span-7 pl-10 md:pl-0"
+                  >
+                    <GlassCard className="p-6 md:p-8 hover:border-[#7C5CFC]/30 transition-all duration-500 relative overflow-hidden bg-[rgba(13,13,15,0.75)] group">
+                      {/* Ambient subtle glow when hovered */}
+                      <div className="absolute -inset-[1px] bg-gradient-to-r from-[#7C5CFC]/10 to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-sm pointer-events-none" />
+                      
+                      {/* Card Header */}
+                      <div className="flex items-start justify-between gap-4 mb-4 pb-3 border-b border-[rgba(255,255,255,0.05)]">
+                        <div>
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-[#7C5CFC]">
+                            {step.subtitle}
+                          </span>
+                          <h4 className="text-xl md:text-2xl font-black text-white tracking-tight mt-1 group-hover:text-[#8D71FF] transition-colors duration-300">
+                            {step.title}
+                          </h4>
+                        </div>
+                        <div className="w-10 h-10 rounded-xl bg-[#7C5CFC]/10 flex items-center justify-center text-[#7C5CFC] group-hover:bg-[#7C5CFC]/20 transition-all duration-300 shrink-0">
+                          {step.icon}
+                        </div>
+                      </div>
+ 
+                      {/* Card Content */}
+                      <p className="text-sm md:text-base text-[#A1A1AA] leading-relaxed mb-6">
+                        {step.desc}
+                      </p>
+ 
+                      {/* Card Tags */}
+                      {step.tags && (
+                        <div className="flex flex-wrap gap-2">
+                          {step.tags.map((tag, tIdx) => (
+                            <span 
+                              key={tIdx} 
+                              className="text-[10px] font-bold uppercase tracking-widest text-[#A1A1AA]/60 bg-white/5 border border-white/5 px-2.5 py-1 rounded-md"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </GlassCard>
                   </motion.div>
+ 
                 </div>
               ))}
             </div>
@@ -517,276 +640,7 @@ export function Home() {
           </div>
         </section>
 
-        {/* 3. SECTION: Engineering Mindset */}
-        <section className="mb-32 relative z-10 px-6 md:px-[100px]">
-          <SectionTitle 
-            title="The logic of an engineer. The eye of a designer." 
-            subtitle="I sit at the rare intersection of Computer Science and Creative Design."
-          />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Engineering Mindset - Large Card */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="lg:col-span-7"
-            >
-              <GlassCard className="h-full flex flex-col justify-between group overflow-hidden relative min-h-[450px] border-indigo-500/10 p-8 md:p-12">
-                {/* Animated Blueprint Background */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none">
-                  <svg className="w-full h-full" viewBox="0 0 400 400">
-                    <defs>
-                      <pattern id="grid-pattern-mindset" width="40" height="40" patternUnits="userSpaceOnUse">
-                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" strokeWidth="0.5"/>
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#grid-pattern-mindset)" />
-                    
-                    <motion.line
-                      x1="0" y1="0" x2="400" y2="0"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      className="text-indigo-500/30"
-                      animate={{ y: [0, 400, 0] }}
-                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    />
-
-                    <motion.path
-                      d="M 50 50 Q 150 50 150 150 T 250 250"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeDasharray="10 5"
-                      initial={{ pathLength: 0 }}
-                      whileInView={{ pathLength: 1 }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                    />
-                  </svg>
-                </div>
-
-                <div className="absolute -right-20 -top-20 w-96 h-96 bg-indigo-500/10 blur-[120px] group-hover:bg-indigo-500/20 transition-colors duration-500" />
-                
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-8">
-                    <motion.div 
-                      whileInView={{ scale: [1, 1.1, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="w-16 h-16 rounded-2xl accent-gradient flex items-center justify-center shadow-2xl shadow-indigo-500/30"
-                    >
-                      <Code className="text-white" size={32} />
-                    </motion.div>
-                    <div className="h-[1px] flex-1 bg-gradient-to-r from-indigo-500/50 to-transparent" />
-                  </div>
-                  
-                  <h3 className="text-4xl font-bold mb-6 tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60">Engineering Mindset</h3>
-                  <p className="text-muted-foreground text-xl leading-relaxed max-w-xl">
-                    While most designers stop at "how it looks," I dig deeper into "how it works." My technical background allows me to build <span className="text-indigo-400 font-bold">scalable design systems</span> and <span className="text-indigo-400 font-bold">feasible user flows</span> that bridge the gap between imagination and execution.
-                  </p>
-                </div>
-
-                <div className="mt-12 flex gap-3 flex-wrap relative z-10">
-                  {["System Architecture", "React/Next.js", "Design Systems", "UI Engineering"].map((tag) => (
-                    <Badge key={tag} className="bg-indigo-500/5 border-indigo-500/10 text-indigo-400/80 px-4 py-2 text-xs font-bold uppercase tracking-widest hover:bg-indigo-500/10 transition-colors">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
-              </GlassCard>
-            </motion.div>
-
-            {/* Education - Visual Card */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: false, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="lg:col-span-5"
-            >
-              <GlassCard className="h-full flex flex-col group overflow-hidden relative min-h-[450px] border-purple-500/10 p-8 md:p-10">
-                <div className="absolute inset-0 pointer-events-none opacity-20">
-                  <svg className="w-full h-full" viewBox="0 0 200 200">
-                    <motion.path
-                      d="M 10 10 L 190 10 M 10 190 L 190 190"
-                      stroke="currentColor"
-                      strokeWidth="0.5"
-                      className="text-purple-500"
-                      strokeDasharray="4 4"
-                      animate={{ strokeDashoffset: [0, 8] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    />
-                    <motion.circle
-                      cx="100" cy="100" r="80"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="0.2"
-                      className="text-purple-500"
-                      strokeDasharray="2 10"
-                      animate={{ rotate: 360 }}
-                      transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    />
-                  </svg>
-                </div>
-
-                <div className="absolute -left-20 -bottom-20 w-80 h-80 bg-purple-500/10 blur-[100px] group-hover:bg-purple-500/20 transition-colors duration-500" />
-                
-                <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-start justify-between mb-10">
-                    <motion.div 
-                      whileInView={{ rotate: [0, 10, -10, 0] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      className="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center shadow-lg shadow-purple-500/10"
-                    >
-                      <GraduationCap className="text-purple-400" size={32} />
-                    </motion.div>
-                    <div className="text-right">
-                      <Badge className="bg-purple-500/10 border-purple-500/20 text-purple-400 mb-2">Class of 2024</Badge>
-                      <p className="text-2xl font-black text-foreground tracking-tighter">Graduated</p>
-                    </div>
-                  </div>
-
-                  <div className="flex-1 space-y-6">
-                    <div>
-                      <h3 className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-black mb-3">Degree</h3>
-                      <p className="text-indigo-400 font-black text-3xl leading-tight tracking-tighter">B.E. Computer Science Engineering</p>
-                    </div>
-                    <div>
-                      <h3 className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-black mb-3">Institution</h3>
-                      <p className="text-foreground text-xl font-bold">Sri Eshwar College of Engineering</p>
-                      <p className="text-muted-foreground font-medium">Coimbatore, India</p>
-                    </div>
-                  </div>
-                  
-                  <div className="mt-auto pt-8 border-t border-border/50 relative z-10">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-3">
-                          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                          <p className="text-sm font-black uppercase tracking-widest text-foreground">Distinction</p>
-                        </div>
-                        <div className="w-full h-2 bg-muted/20 rounded-full overflow-hidden">
-                          <motion.div 
-                            initial={{ width: 0 }}
-                            whileInView={{ width: "86.9%" }}
-                            transition={{ duration: 1.5, ease: "easeOut" }}
-                            className="h-full bg-indigo-500"
-                          />
-                        </div>
-                      </div>
-                      
-                      <div className="relative flex items-center justify-center w-24 h-24 shrink-0">
-                        <svg className="w-full h-full -rotate-[220deg]" viewBox="0 0 100 100">
-                          <circle
-                            cx="50" cy="50" r="40"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="8"
-                            strokeDasharray="180 360"
-                            className="text-muted/10"
-                          />
-                          <motion.circle
-                            cx="50" cy="50" r="40"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="8"
-                            strokeDasharray="180 360"
-                            initial={{ strokeDashoffset: 180 }}
-                            whileInView={{ strokeDashoffset: 180 * (1 - 8.69 / 10) }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 2, ease: "circOut" }}
-                            className="text-indigo-500"
-                          />
-                        </svg>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center pt-2">
-                          <span className="text-2xl font-black text-foreground tracking-tighter">8.69</span>
-                          <span className="text-[8px] text-muted-foreground font-bold uppercase tracking-widest">CGPA</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </GlassCard>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* 4. SECTION: What I Bring (Super UI Redesign) */}
-        <section className="mb-32 relative z-10 px-6 md:px-[100px] overflow-hidden">
-          {/* Background Decorative Elements */}
-          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <motion.div 
-              animate={{ 
-                y: [0, -20, 0],
-                opacity: [0.05, 0.1, 0.05]
-              }}
-              transition={{ duration: 10, repeat: Infinity }}
-              className="absolute top-20 right-[10%] w-64 h-64 border border-indigo-500/20 rounded-full"
-            />
-            <motion.div 
-              animate={{ 
-                y: [0, 20, 0],
-                opacity: [0.05, 0.1, 0.05]
-              }}
-              transition={{ duration: 12, repeat: Infinity, delay: 1 }}
-              className="absolute bottom-20 left-[5%] w-96 h-96 border border-purple-500/10 rounded-full"
-            />
-          </div>
-
-          <SectionTitle 
-            title="What I Bring" 
-            subtitle="The unique value I add to every project and team."
-          />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto relative z-10">
-            {whatIBring.map((item, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, margin: "-100px" }}
-                transition={{ duration: 0.8, delay: idx * 0.15, ease: [0.23, 1, 0.32, 1] }}
-              >
-                <GlassCard className="group h-full p-10 flex flex-col md:flex-row gap-8 transition-all duration-700 border-white/5 hover:border-indigo-500/30 hover:bg-indigo-500/[0.02] relative overflow-hidden">
-                  {/* Decorative Gradient Background */}
-                  <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-indigo-500/5 blur-[80px] group-hover:bg-indigo-500/10 transition-colors duration-700" />
-                  
-                  <div className="flex-1 relative z-10">
-                    <div className="flex items-center gap-4 mb-6">
-                      <motion.div 
-                        whileInView={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                        className="w-14 h-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shadow-inner"
-                      >
-                        {item.icon}
-                      </motion.div>
-                      <div className="h-px flex-1 bg-gradient-to-r from-indigo-500/20 to-transparent" />
-                    </div>
-
-                    <h3 className="text-3xl font-black mb-4 tracking-tighter text-foreground group-hover:text-indigo-400 transition-colors">{item.title}</h3>
-                    <p className="text-lg text-muted-foreground leading-relaxed font-medium">{item.desc}</p>
-                    
-                    <div className="mt-8 flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-indigo-400/60">
-                      <div className="w-8 h-[1px] bg-indigo-500/30" />
-                      Core Expertise
-                    </div>
-                  </div>
-
-                  <div className="w-full md:w-[45%] shrink-0 relative z-10">
-                    <motion.div
-                      whileInView={{ y: [0, -5, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    >
-                      {item.visual}
-                    </motion.div>
-                  </div>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* 5. SECTION: Let’s Connect */}
+        {/* 3. SECTION: Let’s Connect */}
         <section className="mb-32 pt-20 md:pt-32 relative z-10 px-6 md:px-[100px]">
           <motion.div 
             initial={{ opacity: 0, y: 50, scale: 0.95 }}
@@ -882,7 +736,7 @@ export function Home() {
                 </Link>
                 
                 <motion.a
-                  href="https://drive.google.com/file/d/1LXbi3DNdlE4XeX3uGOkWXFjWtzhD9P-H/view?usp=sharing"
+                  href="https://drive.google.com/file/d/1v6mDRdPmUGC5EZCbuafjzNkkcIV_RXGS/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.05 }}
