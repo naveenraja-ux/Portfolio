@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { ArrowRight, Download, Code, GraduationCap, Search, Palette, Briefcase, Users, BookOpen, Layout, RefreshCw, Zap, Target, Mail, Send, Sparkles, PenTool, MousePointer, Monitor } from "lucide-react";
+import { ArrowRight, Download, Code, GraduationCap, Search, Palette, Briefcase, Users, BookOpen, Layout, RefreshCw, Zap, Target, Mail, Send, Sparkles, PenTool, MousePointer, Monitor, MapPin } from "lucide-react";
 import { Badge, GlassCard, SectionTitle, PageTransition } from "@/components/Common";
 import { Link } from "react-router-dom";
 import { HoverBorderGradient } from "@/components/ui/hover-border-gradient";
@@ -17,10 +17,10 @@ export function Home() {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"]
+    offset: ["start center", "end center"]
   });
 
-  const timelineHeight = useTransform(scrollYProgress, [0, 0.5], ["0%", "100%"]);
+  const timelineHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   const journeySteps = [
     { 
@@ -214,149 +214,175 @@ export function Home() {
   return (
     <PageTransition>
       <div className="relative min-h-screen w-full overflow-hidden bg-[#0B0B0C]">
-        {/* High-visibility grid background (55% opacity) & a single radial glow centered behind the Hero section */}
-        <div className="absolute inset-0 z-0 pointer-events-none opacity-55">
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#7C5CFC]/10 rounded-full blur-[140px]" />
-        </div>
+        
+        {/* HERO SECTION WRAPPER - Isolates all hero backgrounds and floating elements strictly to the hero viewport height */}
+        <div className="relative w-full min-h-[100vh] md:min-h-screen overflow-hidden flex flex-col justify-center items-center">
+          
+          {/* High-visibility grid background (30% opacity) & a single radial glow centered behind the Hero section */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-30">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:40px_40px]" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#7C5CFC]/10 rounded-full blur-[140px]" />
+          </div>
 
-        {/* Floating Figma-like workspace UI / digital design elements in Hero background */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-          {/* Vector path with anchor points and cursor */}
-          <motion.div 
-            animate={{ y: [-15, 15, -15], x: [-5, 5, -5] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute top-[20%] left-[8%] opacity-20 hover:opacity-50 transition-opacity duration-300 hidden md:block"
-          >
-            <div className="relative">
-              <svg width="180" height="100" viewBox="0 0 180 100" fill="none">
-                <path d="M10 80 Q 90 10, 170 80" stroke="rgba(124,92,252,0.4)" strokeWidth="1.5" strokeDasharray="4 4" />
-                <path d="M10 80 Q 90 10, 170 80" stroke="#7C5CFC" strokeWidth="1.5" />
-                <circle cx="10" cy="80" r="4" fill="#0B0B0C" stroke="#7C5CFC" strokeWidth="2" />
-                <circle cx="90" cy="45" r="4" fill="#7C5CFC" />
-                <circle cx="170" cy="80" r="4" fill="#0B0B0C" stroke="#7C5CFC" strokeWidth="2" />
-                <line x1="90" y1="45" x2="90" y2="10" stroke="#7C5CFC" strokeWidth="1" />
-                <circle cx="90" cy="10" r="3" fill="#7C5CFC" />
-              </svg>
-              <div className="absolute top-[45px] left-[98px] flex items-center gap-1.5 bg-[#111113] border border-white/10 rounded px-1.5 py-0.5 text-[8px] font-mono text-[#7C5CFC]">
-                <MousePointer size={8} className="rotate-[-90deg] fill-[#7C5CFC]" />
-                <span>AnchorPoint</span>
+          {/* Floating Figma-like workspace UI / digital design elements in Hero background */}
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+            
+            {/* 1. Vector Path & Anchor Points (Top-Left) - Shifted top and far left so half of it is visible off-screen */}
+            <motion.div 
+              animate={{ y: [-15, 15, -15], x: [-5, 5, -5] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-[4%] left-[-12%] sm:left-[-8%] md:left-[-6%] opacity-30 transition-all duration-300 scale-[0.55] sm:scale-[0.6]"
+            >
+              <div className="relative">
+                <svg width="180" height="100" viewBox="0 0 180 100" fill="none">
+                  <path d="M10 80 Q 90 10, 170 80" stroke="rgba(124,92,252,0.85)" strokeWidth="3" strokeDasharray="4 4" />
+                  <path d="M10 80 Q 90 10, 170 80" stroke="#7C5CFC" strokeWidth="3.5" />
+                  <circle cx="10" cy="80" r="6" fill="#0B0B0C" stroke="#7C5CFC" strokeWidth="3.5" />
+                  <circle cx="90" cy="45" r="6" fill="#7C5CFC" />
+                  <circle cx="170" cy="80" r="6" fill="#0B0B0C" stroke="#7C5CFC" strokeWidth="3.5" />
+                  <line x1="90" y1="45" x2="90" y2="15" stroke="#7C5CFC" strokeWidth="2.5" />
+                  <circle cx="90" cy="15" r="5.5" fill="#7C5CFC" />
+                </svg>
+                <div className="absolute top-[48px] left-[98px] flex items-center gap-1.5 bg-[#111113] border-2 border-[#7C5CFC] rounded-md px-2.5 py-1 text-[10px] font-mono text-[#7C5CFC] shadow-lg shadow-purple-500/30">
+                  <MousePointer size={12} className="rotate-[-90deg] fill-[#7C5CFC] text-[#7C5CFC]" />
+                  <span className="font-extrabold tracking-wider">AnchorPoint</span>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Figma Cursor coordinate label */}
-          <motion.div 
-            animate={{ y: [15, -15, 15], rotate: [0, 5, -5, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute top-[65%] left-[8%] opacity-25 hidden lg:block"
-          >
-            <div className="flex items-center gap-1 bg-[#7C5CFC] text-white text-[10px] font-mono font-bold px-2 py-1 rounded-sm shadow-lg shadow-[#7C5CFC]/20">
-              <MousePointer size={10} className="fill-white" />
-              <span>Naveen_Raja</span>
-            </div>
-          </motion.div>
-
-          {/* Wireframe box with sizing dimensions */}
-          <motion.div 
-            animate={{ y: [-10, 10, -10] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-            className="absolute top-[25%] right-[10%] opacity-15 hover:opacity-40 transition-opacity duration-300 hidden md:block"
-          >
-            <div className="border border-dashed border-white/20 p-4 rounded-lg flex flex-col items-center justify-center relative bg-white/[0.01]">
-              <div className="absolute -top-2 left-4 px-1.5 py-0.5 bg-[#111113] text-[8px] font-mono text-[#A1A1AA]/60 border border-white/5 rounded">
-                Frame: Hero_Container
+            {/* 2. Designer Cursor Coordinate Badge ("Naveen Raja") (Middle-Left) - Reduced transparency (30% opacity), shifted 50px up and reduced size */}
+            <motion.div 
+              animate={{ y: [15, -15, 15], rotate: [0, 4, -4, 0] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              className="absolute top-[44%] left-[2%] sm:left-[5%] opacity-30 transition-all duration-300 scale-[0.55] sm:scale-[0.6]"
+            >
+              <div className="flex items-center gap-2 bg-[#7C5CFC] text-white text-[11px] font-mono font-bold px-3 py-2 rounded shadow-xl shadow-[#7C5CFC]/50 border-2 border-white/50">
+                 <MousePointer size={12} className="fill-white text-white" />
+                 <span className="font-black">Naveen_Raja</span>
+                 <span className="bg-white/20 text-[9px] px-1.5 py-0.5 rounded font-black">X: 180</span>
               </div>
-              <div className="w-40 h-24 border border-white/10 rounded flex items-center justify-center relative">
-                <span className="text-[10px] font-mono text-[#A1A1AA]/40">W: 1280 H: 720</span>
-                <div className="absolute -top-1 -left-1 w-2 h-2 bg-[#7C5CFC]" />
-                <div className="absolute -top-1 -right-1 w-2 h-2 bg-[#7C5CFC]" />
-                <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-[#7C5CFC]" />
-                <div className="absolute -bottom-1 -right-1 w-2 h-2 bg-[#7C5CFC]" />
+            </motion.div>
+
+            {/* 3. Sizing Wireframe & Handles (Top-Right) - Shifted top and far right so half of it is visible off-screen */}
+            <motion.div 
+              animate={{ y: [-10, 10, -10] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+              className="absolute top-[4%] right-[-12%] sm:right-[-8%] md:right-[-6%] opacity-30 transition-all duration-300 scale-[0.55] sm:scale-[0.6]"
+            >
+              <div className="border-2 border-dashed border-[#7C5CFC] p-4 rounded-xl flex flex-col items-center justify-center relative bg-[#111113] shadow-2xl shadow-[#7C5CFC]/25">
+                <div className="absolute -top-3 left-4 px-2.5 py-0.5 bg-[#0B0B0C] text-[9px] font-mono text-[#A855F7] border-2 border-[#7C5CFC] rounded font-black">
+                  Frame: Hero_Grid
+                </div>
+                <div className="w-40 h-24 border-2 border-[#7C5CFC]/40 rounded-lg flex items-center justify-center relative bg-[#0B0B0C]">
+                  <span className="text-[11px] font-mono text-white font-bold">W: 1920 H: 1080</span>
+                  <div className="absolute -top-1.5 -left-1.5 w-3 h-3 bg-[#7C5CFC] border-2 border-white rounded-sm shadow-md" />
+                  <div className="absolute -top-1.5 -right-1.5 w-3 h-3 bg-[#7C5CFC] border-2 border-white rounded-sm shadow-md" />
+                  <div className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-[#7C5CFC] border-2 border-white rounded-sm shadow-md" />
+                  <div className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-[#7C5CFC] border-2 border-white rounded-sm shadow-md" />
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Pen Tool tooltip */}
-          <motion.div 
-            animate={{ y: [20, -20, 20], x: [10, -10, 10] }}
-            transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-            className="absolute top-[75%] right-[15%] opacity-20 hidden md:block"
-          >
-            <div className="flex items-center gap-1.5 bg-[#111113] border border-white/10 rounded-full px-3 py-1.5 text-xs text-white/70">
-              <PenTool size={12} className="text-[#7C5CFC]" />
-              <span className="font-mono text-[10px] tracking-wider uppercase">Pen Tool</span>
-            </div>
-          </motion.div>
-
-          {/* Floating pen icon tooltip (moved from journey to hero) */}
-          <motion.div 
-            animate={{ y: [-12, 12, -12], rotate: [0, 8, -8, 0] }}
-            transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-            className="absolute top-[15%] right-[24%] opacity-20 hover:opacity-50 transition-opacity duration-300 hidden lg:block text-indigo-400"
-          >
-            <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 p-2 rounded-xl backdrop-blur-sm">
-              <PenTool size={14} className="text-[#7C5CFC]" />
-              <span className="text-[8px] font-mono uppercase tracking-wider text-white/70">Vector.Edit</span>
-            </div>
-          </motion.div>
-
-          {/* Floating mouse pointer tooltip (moved from journey to hero) */}
-          <motion.div 
-            animate={{ y: [12, -12, 12], x: [-6, 6, -6] }}
-            transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-            className="absolute top-[68%] right-[22%] opacity-20 hover:opacity-50 transition-opacity duration-300 hidden lg:block text-pink-400"
-          >
-            <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 p-2 rounded-xl backdrop-blur-sm">
-              <MousePointer size={14} className="text-[#A855F7]" />
-              <span className="text-[8px] font-mono uppercase tracking-wider text-white/70">Design.Interact</span>
-            </div>
-          </motion.div>
-
-          {/* Floating Screen Widget wireframe (moved from journey to hero) */}
-          <motion.div 
-            animate={{ y: [-15, 15, -15], rotate: [-2, 2, -2] }}
-            transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
-            className="absolute top-[35%] left-[25%] opacity-15 hover:opacity-40 transition-opacity duration-300 hidden xl:block border border-dashed border-white/10 rounded-lg p-3 bg-white/[0.01] backdrop-blur-sm"
-          >
-            <div className="w-24 h-16 border border-white/10 rounded relative flex items-center justify-center">
-              <div className="absolute top-1 left-1 flex gap-1">
-                <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
-                <div className="w-1.5 h-1.5 rounded-full bg-white/20" />
+            {/* 4. Swatches Color Palette (Middle-Right) - Reduced transparency (30% opacity), shifted 50px up and reduced size */}
+            <motion.div
+              animate={{ y: [15, -15, 15], rotate: [-3, 3, -3] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2.2 }}
+              className="absolute top-[38%] right-[2%] sm:right-[5%] opacity-30 transition-all duration-300 scale-[0.55] sm:scale-[0.6]"
+            >
+              <div className="bg-[#111113] border-2 border-emerald-500/50 p-3.5 rounded-2xl shadow-2xl flex flex-col gap-2 min-w-[140px]">
+                <div className="text-[8px] font-mono uppercase text-[#10B981] tracking-widest font-black">Swatches</div>
+                <div className="flex gap-2">
+                  <div className="w-5.5 h-5.5 rounded bg-[#7C5CFC] shadow-[0_0_10px_rgba(124,92,252,0.8)] border border-white/20" title="#7C5CFC" />
+                  <div className="w-5.5 h-5.5 rounded bg-[#EC4899] shadow-[0_0_10px_rgba(236,72,153,0.8)] border border-white/20" title="#EC4899" />
+                  <div className="w-5.5 h-5.5 rounded bg-[#10B981] shadow-[0_0_10px_rgba(16,185,129,0.8)] border border-white/20" title="#10B981" />
+                  <div className="w-5.5 h-5.5 rounded bg-[#3B82F6] shadow-[0_0_10px_rgba(59,130,246,0.8)] border border-white/20" title="#3B82F6" />
+                </div>
+                <span className="text-[9px] font-mono text-white/90 font-extrabold">Active Palette</span>
               </div>
-              <Monitor size={14} className="text-white/20" />
-              <span className="absolute bottom-1 right-1 text-[6px] font-mono text-white/20">Canvas</span>
-            </div>
-          </motion.div>
+            </motion.div>
 
-          {/* Floating UI trends for 2026 */}
-          <motion.div 
-            animate={{ y: [-8, 8, -8] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
-            className="absolute top-[48%] left-[12%] opacity-20 hidden xl:block"
-          >
-            <div className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-md flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-widest font-mono text-white/80">Spatial UI</span>
-            </div>
-          </motion.div>
+            {/* 5. Layers Hierarchy List Widget (Bottom-Right) - Shifted slightly down (78% top) */}
+            <motion.div
+              animate={{ y: [-10, 10, -10], x: [-5, 5, -5] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
+              className="absolute top-[78%] right-[2%] sm:right-[6%] opacity-30 transition-all duration-300 scale-[0.55] sm:scale-[0.6]"
+            >
+              <div className="bg-[#111113] border-2 border-purple-500/40 p-3.5 rounded-xl shadow-2xl min-w-[150px]">
+                <div className="text-[8px] font-mono uppercase text-purple-400 tracking-wider mb-2 font-black">Layers</div>
+                <div className="flex flex-col gap-2 font-mono text-[10px] text-white">
+                  <div className="flex items-center gap-1.5 px-2 py-1 bg-[#7C5CFC]/20 border border-[#7C5CFC]/60 rounded-md">
+                    <Layout size={10} className="text-[#7C5CFC]" />
+                    <span className="font-extrabold">HeroSection</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 px-2 py-1 opacity-70 pl-5">
+                    <Layout size={10} className="text-[#EC4899]" />
+                    <span>MainTitle</span>
+                  </div>
+                  {/* Position down/separated */}
+                  <div className="flex items-center gap-1.5 px-2 py-1 opacity-70 pl-5 mt-1">
+                    <Sparkles size={10} className="text-[#10B981]" />
+                    <span>InteractiveBg</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
 
-          <motion.div 
-            animate={{ y: [8, -8, 8] }}
-            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 3 }}
-            className="absolute top-[52%] right-[10%] opacity-20 hidden xl:block"
-          >
-            <div className="bg-white/5 border border-white/10 px-3 py-1.5 rounded-md flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-pink-500 animate-pulse" />
-              <span className="text-[10px] font-bold uppercase tracking-widest font-mono text-white/80">Bento UX</span>
-            </div>
-          </motion.div>
-        </div>
+            {/* NEW DESIGNER CURSORS: Left and Right sides, randomly placed behind/beside the main central text with smooth floating movement */}
+            
+            {/* A. Prototype Cursor (Left Side) - 30% opacity & 10% smaller scale */}
+            <motion.div 
+              animate={{ y: [-12, 12, -12], x: [4, -4, 4] }}
+              transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+              className="absolute top-[22%] left-[16%] md:left-[24%] opacity-30 scale-[0.55] sm:scale-[0.6] pointer-events-none hidden sm:block"
+            >
+              <div className="flex items-center gap-1.5 bg-[#10B981] text-white text-[11px] font-mono font-bold px-2.5 py-1.5 rounded shadow-xl shadow-[#10B981]/40 border-2 border-white/40">
+                <MousePointer size={12} className="fill-white text-white" />
+                <span className="font-black">prototype</span>
+              </div>
+            </motion.div>
 
-        {/* Hero Section Container (Full immersive viewport height) */}
-        <section className="relative z-10 w-full min-h-[100vh] md:min-h-screen flex flex-col justify-center items-center pt-36 md:pt-44 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="w-full grid grid-cols-12 gap-8 items-center justify-center">
-            <div className="col-span-12 lg:col-start-2 lg:col-span-10 xl:col-start-3 xl:col-span-8 flex flex-col items-center text-center">
+            {/* B. Research Cursor (Right Side) - Shifted slightly to the right side */}
+            <motion.div 
+              animate={{ y: [14, -14, 14], x: [-6, 6, -6] }}
+              transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut", delay: 0.9 }}
+              className="absolute top-[26%] right-[6%] md:right-[12%] opacity-30 scale-[0.55] sm:scale-[0.6] pointer-events-none hidden sm:block"
+            >
+              <div className="flex items-center gap-1.5 bg-[#EC4899] text-white text-[11px] font-mono font-bold px-2.5 py-1.5 rounded shadow-xl shadow-[#EC4899]/40 border-2 border-white/40">
+                <MousePointer size={12} className="fill-white text-white" />
+                <span className="font-black">research</span>
+              </div>
+            </motion.div>
+
+            {/* C. Information Architecture Cursor (Left Side) - Shifted down and towards the slight left */}
+            <motion.div 
+              animate={{ y: [-10, 10, -10], x: [-5, 5, -5] }}
+              transition={{ duration: 8.5, repeat: Infinity, ease: "easeInOut", delay: 1.4 }}
+              className="absolute top-[82%] left-[4%] md:left-[8%] opacity-30 scale-[0.55] sm:scale-[0.6] pointer-events-none hidden sm:block"
+            >
+              <div className="flex items-center gap-1.5 bg-[#F59E0B] text-white text-[11px] font-mono font-bold px-2.5 py-1.5 rounded shadow-xl shadow-[#F59E0B]/40 border-2 border-white/40">
+                <MousePointer size={12} className="fill-white text-white" />
+                <span className="font-black">information_architecture</span>
+              </div>
+            </motion.div>
+
+            {/* D. AI Cursor (Right Side) - Shifted slightly down and to the right side */}
+            <motion.div 
+              animate={{ y: [10, -10, 10], x: [5, -5, 5] }}
+              transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut", delay: 1.8 }}
+              className="absolute top-[76%] right-[4%] md:right-[8%] opacity-30 scale-[0.55] sm:scale-[0.6] pointer-events-none hidden sm:block"
+            >
+              <div className="flex items-center gap-1.5 bg-[#3B82F6] text-white text-[11px] font-mono font-bold px-2.5 py-1.5 rounded shadow-xl shadow-[#3B82F6]/40 border-2 border-white/40">
+                <MousePointer size={12} className="fill-white text-white" />
+                <span className="font-black">AI</span>
+              </div>
+            </motion.div>
+
+          </div>
+
+          {/* Hero Section Container (Full immersive viewport height) */}
+          <section className="relative z-10 w-full min-h-[100vh] md:min-h-screen flex flex-col justify-center items-center pt-28 md:pt-36 pb-16 px-6 md:px-12 max-w-7xl mx-auto">
+            <div className="w-full grid grid-cols-12 gap-8 items-center justify-center">
+              <div className="col-span-12 lg:col-start-2 lg:col-span-10 xl:col-start-3 xl:col-span-8 flex flex-col items-center text-center">
               
               {/* Availability Badge */}
               <motion.div
@@ -396,8 +422,8 @@ export function Home() {
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight text-white leading-none mb-6 select-none bg-gradient-to-b from-white to-[#A1A1AA] bg-clip-text text-transparent"
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-5xl sm:text-7xl md:text-8xl font-extrabold tracking-[-0.03em] leading-[1.05] mb-6 select-none bg-gradient-to-r from-white via-[#F1F5F9] to-[#94A3B8] bg-clip-text text-transparent filter drop-shadow-[0_10px_30px_rgba(124,92,252,0.15)]"
               >
                 Naveen Raja
               </motion.h1>
@@ -446,40 +472,50 @@ export function Home() {
             </div>
           </div>
         </section>
+        </div>
 
         {/* 1. SECTION: My Journey */}
-        <section className="mb-40 relative z-10 px-6 md:px-[100px]" ref={containerRef}>
+        <section className="mb-40 relative z-10 px-6 md:px-[100px]">
           <SectionTitle 
             title="My Journey" 
             subtitle="My step-by-step evolution from a computer science student to a professional designer."
           />
           
-          <div className="relative max-w-5xl mx-auto py-12">
+          {/* Merged container of progress line and timeline steps */}
+          <div className="relative max-w-5xl mx-auto py-12" ref={containerRef}>
             
-            {/* Straight glowing road line connecting the dots of years */}
-            <div className="absolute left-[16px] md:left-1/2 -translate-x-1/2 top-0 bottom-0 w-[4px] z-0 pointer-events-none">
+            {/* Straight glowing road line connecting the dots of years (z-10 layer to come first and sit above backgrounds/card margins) */}
+            <div className="absolute left-[16px] md:left-[37.5%] -translate-x-1/2 top-4 bottom-4 w-[4px] z-10 pointer-events-none">
               {/* Faint base dashed line */}
               <div className="w-full h-full border-l border-dashed border-white/20" />
               
-              {/* Active animated progress line */}
+              {/* Active animated progress line that grows perfectly with scrolling */}
               <motion.div 
                 style={{ height: timelineHeight }}
                 className="absolute top-0 left-0 w-[2px] bg-gradient-to-b from-[#7C5CFC] via-[#A855F7] to-[#EC4899] origin-top shadow-[0_0_15px_rgba(124,92,252,0.6)]"
               />
+
+              {/* Active blinking tip pointer that travels with the scroll progress */}
+              <motion.div
+                style={{ top: timelineHeight }}
+                className="absolute left-[-5px] -translate-y-1/2 w-3.5 h-3.5 rounded-full bg-pink-500 shadow-[0_0_15px_rgba(236,72,153,0.9)] border-2 border-white flex items-center justify-center"
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ duration: 1, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <span className="w-1 h-1 rounded-full bg-white animate-ping" />
+              </motion.div>
             </div>
-          </div>
- 
-          <div className="relative max-w-5xl mx-auto py-12">
-            <div className="space-y-12 relative z-10">
+
+            <div className="space-y-12 relative z-20">
               {journeySteps.map((step, idx) => (
-                <div key={idx} className="grid grid-cols-12 gap-4 md:gap-8 items-center relative py-6">
+                <div key={idx} className="grid grid-cols-12 gap-4 md:gap-8 items-center relative py-6 group">
                   
                   {/* LEFT COLUMN: Year with elegant typography (animates from left to inside) */}
                   <motion.div 
-                    initial={{ opacity: 0, x: -50 }}
+                    initial={{ opacity: 0, x: -30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, margin: "-100px" }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="col-span-12 md:col-span-4 flex flex-col md:items-end text-left md:text-right relative pl-10 md:pl-0"
                   >
                     <span className="text-xs font-bold uppercase tracking-[0.2em] text-[#7C5CFC] mb-1">
@@ -494,35 +530,50 @@ export function Home() {
                         backgroundPosition: { duration: 5, repeat: Infinity, ease: "linear" },
                         y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: idx * 0.3 }
                       }}
-                      className="text-5xl md:text-6xl font-black font-mono tracking-tighter bg-gradient-to-r from-white via-purple-300 to-white bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_2px_10px_rgba(124,92,252,0.25)] select-none"
+                      className="text-5xl sm:text-6xl md:text-7xl font-black font-mono tracking-tighter bg-gradient-to-r from-white via-purple-300 to-white bg-[length:200%_auto] bg-clip-text text-transparent drop-shadow-[0_2px_15px_rgba(124,92,252,0.3)] select-none leading-none flex flex-col md:items-end items-start"
                     >
-                      {step.year}
+                      {step.year.includes("-") ? (
+                        <>
+                          <span>{step.year.split("-")[0].trim()}</span>
+                          <span className="text-[#7C5CFC] text-2xl md:text-3xl my-1 md:my-1.5 block leading-none font-bold select-none">—</span>
+                          <span>{step.year.split("-")[1].trim()}</span>
+                        </>
+                      ) : (
+                        step.year
+                      )}
                     </motion.h3>
-                    <span className="text-xs text-[#A1A1AA]/50 font-medium mt-1">
-                      {step.location}
+                    <span className="text-xs text-[#A1A1AA]/60 font-medium mt-1 flex items-center gap-1 md:justify-end">
+                      <MapPin size={12} className="text-[#7C5CFC] shrink-0" />
+                      <span>{step.location}</span>
                     </span>
                   </motion.div>
  
                   {/* CENTER COLUMN: Road Joint Dot / Marker */}
                   <div className="col-span-12 md:col-span-1 flex md:justify-center items-center relative py-2 md:py-0">
-                    <div className="absolute left-[16px] md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-[#09090b]/90 border border-white/10 group-hover:border-[#7C5CFC] shadow-[0_0_15px_rgba(124,92,252,0.15)] z-20 transition-all duration-300">
+                    <div className="absolute left-[16px] md:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full flex items-center justify-center bg-[#09090b]/90 border border-[#7C5CFC]/50 group-hover:border-[#7C5CFC] shadow-[0_0_20px_rgba(124,92,252,0.35)] z-30 transition-all duration-300">
                       <div className="w-3.5 h-3.5 rounded-full bg-[#7C5CFC] flex items-center justify-center text-white">
                         <div className="w-1.5 h-1.5 rounded-full bg-white" />
                       </div>
+                      {/* High visibility blinking pulse ring around each dot */}
                       <motion.div 
-                        animate={{ scale: [1, 1.4, 1], opacity: [0.3, 0.7, 0.3] }}
-                        transition={{ duration: 2.5, repeat: Infinity, delay: idx * 0.4 }}
-                        className="absolute w-7 h-7 rounded-full bg-[#7C5CFC]/30 blur-[1px] pointer-events-none"
+                        animate={{ scale: [1, 1.7, 1], opacity: [0.4, 0.9, 0.4] }}
+                        transition={{ duration: 1.8, repeat: Infinity, delay: idx * 0.4 }}
+                        className="absolute w-7 h-7 rounded-full bg-[#7C5CFC]/30 blur-[1.5px] pointer-events-none"
+                      />
+                      <motion.div 
+                        animate={{ scale: [1, 2.2, 1], opacity: [0.15, 0.4, 0.15] }}
+                        transition={{ duration: 2.2, repeat: Infinity, delay: idx * 0.4 + 0.2 }}
+                        className="absolute w-10 h-10 rounded-full bg-[#EC4899]/20 blur-[2px] pointer-events-none"
                       />
                     </div>
                   </div>
  
-                  {/* RIGHT COLUMN: Interactive Content Card (animates from right to inside at the same time) */}
+                  {/* RIGHT COLUMN: Interactive Content Card (animates from right to inside) */}
                   <motion.div 
-                    initial={{ opacity: 0, x: 50 }}
+                    initial={{ opacity: 0, x: 30 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: false, margin: "-100px" }}
-                    transition={{ duration: 0.8, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.4, ease: "easeOut" }}
                     className="col-span-12 md:col-span-7 pl-10 md:pl-0"
                   >
                     <GlassCard className="p-6 md:p-8 hover:border-[#7C5CFC]/30 transition-all duration-500 relative overflow-hidden bg-[rgba(13,13,15,0.75)] group">
@@ -582,10 +633,10 @@ export function Home() {
             {designApproach.map((item, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                initial={{ opacity: 0, y: 15, scale: 0.98 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: false, margin: "-50px" }}
-                transition={{ duration: 0.7, delay: idx * 0.1, ease: [0.23, 1, 0.32, 1] }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.35, delay: idx * 0.05, ease: "easeOut" }}
               >
                 <GlassCard className="h-full p-6 flex flex-col items-start text-left transition-all duration-500 group relative overflow-hidden border-white/5 hover:border-indigo-500/30">
                   {/* Background Number */}
@@ -620,8 +671,8 @@ export function Home() {
                     </motion.div>
                   </div>
 
-                  {/* Visual UI Method Elements */}
-                  <div className="absolute top-4 right-4 opacity-40 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  {/* Visual UI Method Elements - Reduced transparency and size */}
+                  <div className="absolute top-4 right-4 opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none scale-90 origin-top-right">
                     {item.visual}
                   </div>
 
@@ -643,10 +694,10 @@ export function Home() {
         {/* 3. SECTION: Let’s Connect */}
         <section className="mb-32 pt-20 md:pt-32 relative z-10 px-6 md:px-[100px]">
           <motion.div 
-            initial={{ opacity: 0, y: 50, scale: 0.95 }}
+            initial={{ opacity: 0, y: 20, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: false, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             className="relative overflow-hidden rounded-[3rem] bg-[#0d0d0f] border border-white/5 p-12 md:p-24 text-center"
           >
             {/* Animated Background Gradient */}
@@ -669,30 +720,30 @@ export function Home() {
               className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-purple-500 rounded-full blur-[150px] pointer-events-none"
             />
 
-            {/* Floating Icons for Contact Section */}
+            {/* Floating Icons for Contact Section - Reduced transparency and size */}
             <div className="absolute inset-0 pointer-events-none overflow-hidden">
               {[Mail, Send, Sparkles, Target].map((Icon, i) => (
                 <motion.div
                   key={i}
                   animate={{ 
-                    y: [0, -20, 0],
-                    x: [0, 10, 0],
-                    rotate: [0, 10, 0],
-                    opacity: [0.1, 0.3, 0.1]
+                    y: [0, -12, 0],
+                    x: [0, 6, 0],
+                    rotate: [0, 8, 0],
+                    opacity: [0.08, 0.3, 0.08]
                   }}
                   transition={{ 
-                    duration: 5 + i, 
+                    duration: 6 + i, 
                     repeat: Infinity, 
                     delay: i * 1.5,
                     ease: "easeInOut" 
                   }}
-                  className="absolute text-white/20"
+                  className="absolute text-white/10"
                   style={{ 
                     top: `${20 + i * 20}%`, 
-                    left: i % 2 === 0 ? `${10 + i * 5}%` : `${80 - i * 5}%` 
+                    left: i % 2 === 0 ? `${12 + i * 5}%` : `${78 - i * 5}%` 
                   }}
                 >
-                  <Icon size={32 + i * 8} />
+                  <Icon size={20 + i * 4} />
                 </motion.div>
               ))}
             </div>
@@ -701,7 +752,7 @@ export function Home() {
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 className="text-2xl md:text-4xl font-black text-white mb-6 tracking-tighter"
               >
                 Let's create something extraordinary.
@@ -710,7 +761,7 @@ export function Home() {
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
                 className="text-sm md:text-base text-white/60 mb-10 leading-relaxed font-medium"
               >
@@ -721,7 +772,7 @@ export function Home() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
