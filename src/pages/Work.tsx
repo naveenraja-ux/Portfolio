@@ -20,7 +20,7 @@ export function Work() {
             animate={{ opacity: 1, y: 0 }}
             className="text-3xl md:text-5xl font-black text-foreground tracking-tighter mb-2"
           >
-            Selected <span className="text-indigo-500">Work</span>
+            Selected <span className="text-[#0C8BE8]">Work</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: -20 }}
@@ -74,7 +74,7 @@ export function Work() {
                       <span className="text-xs font-black tracking-tight">{project.title}</span>
                       <span className="text-[9px] text-muted-foreground uppercase tracking-widest mt-0.5">{project.type}</span>
                     </div>
-                    <div className="text-[9px] text-indigo-500 font-bold bg-indigo-500/10 px-2 py-0.5 rounded-md">
+                    <div className="text-[9px] text-[#0C8BE8] font-bold bg-[#54268F]/20 border border-[#0C8BE8]/20 px-2 py-0.5 rounded-md">
                       {project.category}
                     </div>
                   </div>

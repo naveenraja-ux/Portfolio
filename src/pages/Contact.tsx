@@ -30,32 +30,32 @@ export function Contact() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 items-stretch">
             <div className="flex flex-col gap-3 md:gap-4">
-              <GlassCard className="flex items-center gap-4 p-4 md:p-5 hover:border-indigo-500/30 transition-all duration-300">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+              <GlassCard className="flex items-center gap-4 p-4 md:p-5 hover:border-[#0C8BE8]/35 transition-all duration-300">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#54268F]/15 flex items-center justify-center text-[#0C8BE8] shrink-0">
                   <Mail size={20} className="md:w-6 md:h-6" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-[10px] text-muted-foreground mb-0.5 font-bold uppercase tracking-wider">Email Me</p>
-                  <a href="mailto:naveenraja1297@gmail.com" className="text-sm md:text-base font-bold hover:text-indigo-400 transition-colors truncate block">
+                  <a href="mailto:naveenraja1297@gmail.com" className="text-sm md:text-base font-bold hover:text-[#0C8BE8] transition-colors truncate block">
                     naveenraja1297@gmail.com
                   </a>
                 </div>
               </GlassCard>
 
-              <GlassCard className="flex items-center gap-4 p-4 md:p-5 hover:border-indigo-500/30 transition-all duration-300">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+              <GlassCard className="flex items-center gap-4 p-4 md:p-5 hover:border-[#0C8BE8]/35 transition-all duration-300">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#54268F]/15 flex items-center justify-center text-[#0C8BE8] shrink-0">
                   <Phone size={20} className="md:w-6 md:h-6" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-[10px] text-muted-foreground mb-0.5 font-bold uppercase tracking-wider">Call Me</p>
-                  <a href="tel:+916385941180" className="text-sm md:text-base font-bold hover:text-indigo-400 transition-colors truncate block">
+                  <a href="tel:+916385941180" className="text-sm md:text-base font-bold hover:text-[#0C8BE8] transition-colors truncate block">
                     +91 6385941180
                   </a>
                 </div>
               </GlassCard>
 
-              <GlassCard className="flex items-center gap-4 p-4 md:p-5 hover:border-indigo-500/30 transition-all duration-300">
-                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center text-indigo-400 shrink-0">
+              <GlassCard className="flex items-center gap-4 p-4 md:p-5 hover:border-[#0C8BE8]/35 transition-all duration-300">
+                <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-[#54268F]/15 flex items-center justify-center text-[#0C8BE8] shrink-0">
                   <MapPin size={20} className="md:w-6 md:h-6" />
                 </div>
                 <div>

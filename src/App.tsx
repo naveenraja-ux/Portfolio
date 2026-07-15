@@ -33,7 +33,7 @@ function AppContent() {
   });
 
   return (
-    <div className="relative min-h-screen bg-background text-foreground selection:bg-indigo-500/30">
+    <div className="relative min-h-screen bg-background text-foreground selection:bg-[#54268F]/30">
       {/* Global Grid Background */}
       <div className="fixed inset-0 z-[-1] bg-background">
         <div
@@ -85,7 +85,7 @@ function AppContent() {
               <a href="https://www.behance.net/naveenraja12" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground transition-colors"><Behance size={18} /></a>
               <a href="mailto:naveenraja1297@gmail.com" className="text-muted-foreground hover:text-foreground transition-colors"><Mail size={18} /></a>
             </div>
-            <div className="flex items-center gap-2 text-indigo-400 text-sm font-medium">
+            <div className="flex items-center gap-2 text-[#0C8BE8] text-sm font-medium">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
               Available for new projects
             </div>

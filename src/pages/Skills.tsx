@@ -15,7 +15,7 @@ const UIUXGraphic = () => (
         opacity: [0.3, 0.6, 0.3]
       }}
       transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-10 left-10 w-24 h-16 border border-indigo-500/30 rounded-lg"
+      className="absolute top-10 left-10 w-24 h-16 border border-[#0C8BE8]/30 rounded-lg"
     />
     <motion.div 
       animate={{ 
@@ -25,7 +25,7 @@ const UIUXGraphic = () => (
       transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
       className="absolute bottom-10 right-10 w-20 h-20 border border-blue-500/30 rounded-full"
     />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#54268F]/25 to-transparent" />
   </div>
 );
 
@@ -42,9 +42,9 @@ const VisualGraphic = () => (
         transition={{ duration: 10 + i * 2, repeat: Infinity, ease: "linear" }}
         className={cn(
           "absolute rounded-full blur-2xl",
-          i === 0 ? "top-0 left-0 w-32 h-32 bg-purple-500" :
+          i === 0 ? "top-0 left-0 w-32 h-32 bg-[#54268F]" :
           i === 1 ? "bottom-0 right-0 w-40 h-40 bg-pink-500" :
-          "top-1/2 left-1/2 w-24 h-24 bg-indigo-500"
+          "top-1/2 left-1/2 w-24 h-24 bg-[#0C8BE8]"
         )}
       />
     ))}
@@ -143,7 +143,7 @@ const expertise = [
     title: "UI/UX Design", 
     icon: <Layout size={24} />, 
     desc: "Designing intuitive, user-friendly interfaces with focus on clarity and accessibility.",
-    color: "from-blue-500/20 to-indigo-500/20",
+    color: "from-blue-500/20 to-[#0C8BE8]/20",
     iconColor: "text-blue-400",
     graphic: <UIUXGraphic />
   },
@@ -267,18 +267,18 @@ const designApproach = [
       </motion.div>
     ), 
     desc: "Mapping out the structure and flow of the experience.", 
-    color: "text-indigo-400",
+    color: "text-[#0C8BE8]",
     visual: (
-      <div className="w-16 h-12 border-2 border-dashed border-indigo-500/30 rounded-md bg-indigo-500/5 flex flex-col gap-1.5 p-1.5 relative overflow-hidden">
+      <div className="w-16 h-12 border-2 border-dashed border-[#0C8BE8]/30 rounded-md bg-[#54268F]/5 flex flex-col gap-1.5 p-1.5 relative overflow-hidden">
         <motion.div 
           animate={{ y: ["-100%", "200%"] }}
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 left-0 w-full h-1/2 bg-indigo-500/10 blur-sm"
+          className="absolute top-0 left-0 w-full h-1/2 bg-[#54268F]/10 blur-sm"
         />
-        <div className="w-full h-2 bg-indigo-500/20 rounded-sm" />
+        <div className="w-full h-2 bg-[#0C8BE8]/20 rounded-sm" />
         <div className="flex gap-1">
-          <div className="flex-1 h-4 bg-indigo-500/10 rounded-sm" />
-          <div className="flex-1 h-4 bg-indigo-500/10 rounded-sm" />
+          <div className="flex-1 h-4 bg-[#54268F]/15 rounded-sm" />
+          <div className="flex-1 h-4 bg-[#54268F]/15 rounded-sm" />
         </div>
       </div>
     )
@@ -432,7 +432,7 @@ export function Skills() {
               animate={{ opacity: 1, y: 0 }}
               className="flex flex-col items-start"
             >
-              <Badge className="mb-4 bg-indigo-500/10 text-indigo-400 border-indigo-500/20">Capabilities</Badge>
+              <Badge className="mb-4 bg-[#54268F]/15 text-[#0C8BE8] border-[#0C8BE8]/30">Capabilities</Badge>
               <h1 className="text-5xl md:text-7xl font-black text-gradient mb-6 tracking-tighter">
                 My Expertise
               </h1>
@@ -473,13 +473,13 @@ export function Skills() {
                       {skill.icon}
                     </div>
                     <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
-                      <Sparkles size={16} className="text-indigo-400" />
+                      <Sparkles size={16} className="text-[#0C8BE8]" />
                     </div>
                   </div>
                   
                   {/* Content */}
                   <div className="relative z-10 mt-auto">
-                    <h3 className="text-2xl font-black mb-4 tracking-tight text-white group-hover:text-indigo-300 transition-colors duration-300">
+                    <h3 className="text-2xl font-black mb-4 tracking-tight text-white group-hover:text-[#0C8BE8] transition-colors duration-300">
                       {skill.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed font-medium text-lg">
@@ -488,7 +488,7 @@ export function Skills() {
                   </div>
 
                   {/* Bottom Indicator */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center" />
+                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#54268F]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center" />
                 </div>
               </motion.div>
             ))}
@@ -510,7 +510,7 @@ export function Skills() {
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{ duration: 0.35, delay: idx * 0.05, ease: "easeOut" }}
                 >
-                  <GlassCard className="h-full p-6 flex flex-col items-start text-left transition-all duration-500 group relative overflow-hidden border-white/5 hover:border-indigo-500/30 bg-[rgba(13,13,15,0.75)]">
+                  <GlassCard className="h-full p-6 flex flex-col items-start text-left transition-all duration-500 group relative overflow-hidden border-white/5 hover:border-[#0C8BE8]/30 bg-[rgba(13,13,15,0.75)]">
                     {/* Background Number */}
                     <motion.div 
                       initial={{ opacity: 0, x: 20 }}
@@ -548,14 +548,14 @@ export function Skills() {
                       {item.visual}
                     </div>
 
-                    <h3 className="text-lg font-bold mb-3 tracking-tight relative z-10 group-hover:text-indigo-400 transition-colors">{item.title}</h3>
+                    <h3 className="text-lg font-bold mb-3 tracking-tight relative z-10 group-hover:text-[#0C8BE8] transition-colors">{item.title}</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed relative z-10">{item.desc}</p>
                     
                     {/* Animated scanning line - now auto-animates on scroll */}
                     <motion.div 
                       animate={{ x: ["-100%", "200%"] }}
                       transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent" 
+                      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0C8BE8]/50 to-transparent" 
                     />
                   </GlassCard>
                 </motion.div>
