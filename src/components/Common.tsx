@@ -5,14 +5,16 @@ import { cn } from "@/lib/utils";
 interface GlassCardProps {
   children: ReactNode;
   className?: string;
+  onClick?: (e: React.MouseEvent) => void;
   key?: Key;
 }
 
-export const GlassCard = ({ children, className = "" }: GlassCardProps) => (
+export const GlassCard = ({ children, className = "", onClick }: GlassCardProps) => (
   <motion.div 
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
+    onClick={onClick}
     className={`glass-card p-6 ${className}`}
   >
     {children}

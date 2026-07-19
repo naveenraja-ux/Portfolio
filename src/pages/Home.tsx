@@ -1077,13 +1077,15 @@ export function Home() {
                 
                 {/* 1. Direct Email Card */}
                 <div 
-                  className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:border-[#8B5CF6]/40 transition-all duration-300 text-left flex flex-col justify-between h-[115px] group relative"
+                  onClick={copyEmailToClipboard}
+                  className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.05] hover:bg-white/[0.04] hover:border-[#8B5CF6]/40 transition-all duration-300 text-left flex flex-col justify-between h-[115px] group relative cursor-pointer"
+                  title="Click anywhere to copy email"
                 >
                   <div className="flex items-center justify-between">
-                    <div className="w-8 h-8 rounded-lg bg-[#8B5CF6]/10 border border-[#8B5CF6]/20 flex items-center justify-center text-[#A78BFA]">
+                    <div className="w-8 h-8 rounded-lg bg-[#8B5CF6]/10 border border-[#8B5CF6]/20 flex items-center justify-center text-[#A78BFA] group-hover:scale-105 transition-transform duration-300">
                       <Mail size={16} />
                     </div>
-                    <span className="text-[8px] font-bold text-white/30 uppercase tracking-widest">Direct Channel</span>
+                    <span className="text-[8px] font-bold text-white/30 uppercase tracking-widest">Direct Channel (Click to Copy)</span>
                   </div>
                   <div>
                     <span className="text-[9px] font-bold text-white/40 uppercase tracking-wider block mb-0.5">Email Address</span>
@@ -1091,19 +1093,21 @@ export function Home() {
                       <span className="text-sm font-bold text-white group-hover:text-[#A78BFA] transition-colors truncate block">
                         naveenraja1297@gmail.com
                       </span>
-                      <button 
-                        onClick={copyEmailToClipboard}
-                        className="p-1 rounded-md bg-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-all shrink-0 flex items-center justify-center"
-                        title="Copy Email"
+                      <div 
+                        className="px-2 py-1 rounded-md bg-white/5 border border-white/5 hover:bg-white/10 text-white/60 hover:text-white transition-all shrink-0 flex items-center gap-1 font-mono text-[10px]"
                       >
                         {copied ? (
-                          <span className="text-[9px] font-black text-emerald-400 flex items-center gap-0.5">
-                            <Check size={10} strokeWidth={3} /> Copied
-                          </span>
+                          <>
+                            <Check size={12} className="text-emerald-400" />
+                            <span className="text-[9px] font-black text-emerald-400">COPIED</span>
+                          </>
                         ) : (
-                          <Copy size={10} />
+                          <>
+                            <Copy size={11} className="text-[#A78BFA] group-hover:text-white" />
+                            <span className="text-[9px] font-black text-white/40 group-hover:text-white/60">COPY</span>
+                          </>
                         )}
-                      </button>
+                      </div>
                     </div>
                   </div>
                 </div>

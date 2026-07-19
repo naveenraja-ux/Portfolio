@@ -1,598 +1,265 @@
 import React from "react";
 import { motion } from "motion/react";
-import { Layout, Sparkles, MousePointer2, Layers, Smartphone, CheckCircle2, Figma, Palette, Zap, Target, Users, Terminal, Globe, Search, BarChart3, Component, RefreshCw } from "lucide-react";
-import { GlassCard, PageTransition, Badge, SectionTitle } from "@/components/Common";
+import { 
+  Layout, 
+  Target, 
+  Layers, 
+  Zap, 
+  Users, 
+  Terminal, 
+  Figma, 
+  Sparkles, 
+  Palette, 
+  Code, 
+  Component, 
+  MousePointer2, 
+  Smartphone, 
+  RefreshCw, 
+  ArrowRight 
+} from "lucide-react";
+import { PageTransition } from "@/components/Common";
 import { cn } from "@/lib/utils";
-import { useMotionValue, useSpring, useTransform } from "motion/react";
 
-// --- Skill Graphics Components ---
-
-const UIUXGraphic = () => (
-  <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
-    <motion.div 
-      animate={{ 
-        y: [0, -10, 0],
-        opacity: [0.3, 0.6, 0.3]
-      }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      className="absolute top-10 left-10 w-24 h-16 border border-[#0C8BE8]/30 rounded-lg"
-    />
-    <motion.div 
-      animate={{ 
-        y: [0, 10, 0],
-        opacity: [0.2, 0.5, 0.2]
-      }}
-      transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      className="absolute bottom-10 right-10 w-20 h-20 border border-blue-500/30 rounded-full"
-    />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-px bg-gradient-to-r from-transparent via-[#54268F]/25 to-transparent" />
-  </div>
-);
-
-const VisualGraphic = () => (
-  <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
-    {[...Array(3)].map((_, i) => (
-      <motion.div
-        key={i}
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 180, 360],
-          opacity: [0.1, 0.3, 0.1]
-        }}
-        transition={{ duration: 10 + i * 2, repeat: Infinity, ease: "linear" }}
-        className={cn(
-          "absolute rounded-full blur-2xl",
-          i === 0 ? "top-0 left-0 w-32 h-32 bg-[#54268F]" :
-          i === 1 ? "bottom-0 right-0 w-40 h-40 bg-pink-500" :
-          "top-1/2 left-1/2 w-24 h-24 bg-[#0C8BE8]"
-        )}
-      />
-    ))}
-  </div>
-);
-
-const InteractionGraphic = () => (
-  <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
-    <motion.div
-      animate={{
-        x: ["10%", "90%", "10%"],
-        y: ["20%", "80%", "20%"],
-      }}
-      transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      className="w-4 h-4 bg-amber-500 rounded-full blur-sm"
-    />
-    <motion.div
-      animate={{
-        x: ["80%", "20%", "80%"],
-        y: ["70%", "30%", "70%"],
-      }}
-      transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      className="w-6 h-6 bg-orange-500 rounded-full blur-md"
-    />
-  </div>
-);
-
-const DesignSystemGraphic = () => (
-  <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none p-6">
-    <div className="grid grid-cols-4 gap-2 h-full">
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          animate={{
-            opacity: [0.1, 0.4, 0.1],
-            scale: [0.9, 1, 0.9]
-          }}
-          transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
-          className="bg-emerald-500/20 rounded-md border border-emerald-500/10"
-        />
-      ))}
-    </div>
-  </div>
-);
-
-const StrategyGraphic = () => (
-  <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
-    <svg className="w-full h-full" viewBox="0 0 200 200">
-      <motion.path
-        d="M 20 150 Q 60 50 100 120 T 180 40"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        className="text-rose-500"
-        initial={{ pathLength: 0 }}
-        animate={{ pathLength: 1 }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.circle
-        cx="180" cy="40" r="5"
-        fill="currentColor"
-        className="text-rose-500"
-        animate={{ scale: [1, 1.5, 1] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      />
-    </svg>
-  </div>
-);
-
-const ResearchGraphic = () => (
-  <div className="absolute inset-0 overflow-hidden opacity-20 pointer-events-none">
-    {[...Array(5)].map((_, i) => (
-      <motion.div
-        key={i}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.2, 0.5, 0.2]
-        }}
-        transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 }}
-        className="absolute w-2 h-2 bg-cyan-500 rounded-full"
-        style={{
-          top: `${20 + Math.random() * 60}%`,
-          left: `${20 + Math.random() * 60}%`,
-        }}
-      />
-    ))}
-    <svg className="w-full h-full absolute inset-0">
-      <line x1="20%" y1="20%" x2="80%" y2="80%" stroke="currentColor" strokeWidth="0.5" className="text-cyan-500/30" />
-      <line x1="80%" y1="20%" x2="20%" y2="80%" stroke="currentColor" strokeWidth="0.5" className="text-cyan-500/30" />
-    </svg>
-  </div>
-);
-
-const expertise = [
-  { 
-    title: "UI/UX Design", 
-    icon: <Layout size={24} />, 
-    desc: "Designing intuitive, user-friendly interfaces with focus on clarity and accessibility.",
-    color: "from-blue-500/20 to-[#0C8BE8]/20",
-    iconColor: "text-blue-400",
-    graphic: <UIUXGraphic />
+const expertises = [
+  {
+    title: "UX Design",
+    description: "Designing user-centered experiences through research, user flows, information architecture, wireframes, and interactive prototypes.",
+    highlights: ["User Flows", "Wireframes", "Information Architecture", "Prototyping"],
+    badge: "Primary Expertise",
+    accent: "blue",
+    icon: Layout
   },
-  { 
-    title: "Visual Design", 
-    icon: <Palette size={24} />, 
-    desc: "Crafting clean, modern visuals using typography, color theory, and visual hierarchy.",
-    color: "from-purple-500/20 to-pink-500/20",
-    iconColor: "text-purple-400",
-    graphic: <VisualGraphic />
+  {
+    title: "Product Design",
+    description: "Solving business challenges by creating intuitive digital products that balance user needs with product goals.",
+    highlights: ["Problem Solving", "Product Thinking", "User Journeys", "MVP Design"],
+    badge: "Core Skill",
+    accent: "purple",
+    icon: Target
   },
-  { 
-    title: "Interaction Design", 
-    icon: <Zap size={24} />, 
-    desc: "Creating smooth, engaging user interactions and micro-animations that delight users.",
-    color: "from-amber-500/20 to-orange-500/20",
-    iconColor: "text-amber-400",
-    graphic: <InteractionGraphic />
+  {
+    title: "Design Systems",
+    description: "Building scalable and consistent design systems with reusable components and responsive layouts.",
+    highlights: ["Components", "Auto Layout", "Variables", "Responsive Design"],
+    badge: "Scalable UI",
+    accent: "green",
+    icon: Layers
   },
-  { 
-    title: "Design Systems", 
-    icon: <Layers size={24} />, 
-    desc: "Building consistent, scalable components and patterns for seamless product growth.",
-    color: "from-emerald-500/20 to-teal-500/20",
-    iconColor: "text-emerald-400",
-    graphic: <DesignSystemGraphic />
+  {
+    title: "Interaction Design",
+    description: "Creating delightful interactions using animations, transitions, feedback states, and micro-interactions.",
+    highlights: ["Motion", "Hover States", "Animations", "User Feedback"],
+    badge: "Experience Focus",
+    accent: "yellow",
+    icon: Zap
   },
-  { 
-    title: "Product Strategy", 
-    icon: <Target size={24} />, 
-    desc: "Aligning user needs with business goals to create impactful digital solutions.",
-    color: "from-rose-500/20 to-red-500/20",
-    iconColor: "text-rose-400",
-    graphic: <StrategyGraphic />
+  {
+    title: "User Research",
+    description: "Understanding users through research, competitor analysis, usability testing, and data-driven design decisions.",
+    highlights: ["Competitor Analysis", "User Interviews", "Usability Testing", "Insights"],
+    badge: "Research Driven",
+    accent: "cyan",
+    icon: Users
   },
-  { 
-    title: "User Research", 
-    icon: <Users size={24} />, 
-    desc: "Gathering deep insights to validate assumptions and refine the user experience.",
-    color: "from-cyan-500/20 to-sky-500/20",
-    iconColor: "text-cyan-400",
-    graphic: <ResearchGraphic />
+  {
+    title: "Developer Handoff",
+    description: "Preparing production-ready designs with organized components, documentation, and clean developer handoff.",
+    highlights: ["Figma Specs", "Components", "Documentation", "Collaboration"],
+    badge: "Development Ready",
+    accent: "orange",
+    icon: Terminal
   }
 ];
 
-const designApproach = [
-  { 
-    title: "User understanding", 
-    icon: (
-      <motion.div
-        animate={{ x: [-2, 2, -2] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <Users size={24} />
-      </motion.div>
-    ), 
-    desc: "Empathizing with users to uncover their real needs.", 
-    color: "text-blue-400",
-    visual: (
-      <div className="flex -space-x-2">
-        {[1, 2, 3].map(i => (
-          <motion.div 
-            key={i}
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            transition={{ delay: i * 0.1 }}
-            className="w-8 h-8 rounded-full border-2 border-background bg-muted overflow-hidden shadow-lg"
-          >
-            <img src={`https://picsum.photos/seed/user${i+10}/50/50`} alt="user" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
-          </motion.div>
-        ))}
-        <motion.div 
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ delay: 0.4 }}
-          className="w-8 h-8 rounded-full border-2 border-background bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white shadow-lg"
-        >
-          +
-        </motion.div>
-      </div>
-    )
-  },
-  { 
-    title: "Problem identification", 
-    icon: (
-      <motion.div
-        animate={{ scale: [1, 1.1, 1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <Search size={24} />
-      </motion.div>
-    ), 
-    desc: "Defining the core challenges before jumping into solutions.", 
-    color: "text-purple-400",
-    visual: (
-      <div className="relative w-16 h-10 border border-purple-500/30 rounded-lg bg-purple-500/5 flex items-center justify-center overflow-hidden">
-        <motion.div 
-          animate={{ 
-            scale: [1, 1.5, 1],
-            opacity: [0.2, 0.5, 0.2]
-          }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute inset-0 bg-purple-400/20 rounded-full blur-xl"
-        />
-        <div className="absolute inset-0 flex flex-col gap-1 p-2">
-          <div className="w-full h-1 bg-purple-500/20 rounded-full" />
-          <div className="w-2/3 h-1 bg-purple-500/20 rounded-full" />
-        </div>
-        <Target size={12} className="text-purple-400 relative z-10" />
-      </div>
-    )
-  },
-  { 
-    title: "Wireframing & prototyping", 
-    icon: (
-      <motion.div
-        animate={{ y: [-2, 2, -2] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <Layout size={24} />
-      </motion.div>
-    ), 
-    desc: "Mapping out the structure and flow of the experience.", 
-    color: "text-[#0C8BE8]",
-    visual: (
-      <div className="w-16 h-12 border-2 border-dashed border-[#0C8BE8]/30 rounded-md bg-[#54268F]/5 flex flex-col gap-1.5 p-1.5 relative overflow-hidden">
-        <motion.div 
-          animate={{ y: ["-100%", "200%"] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="absolute top-0 left-0 w-full h-1/2 bg-[#54268F]/10 blur-sm"
-        />
-        <div className="w-full h-2 bg-[#0C8BE8]/20 rounded-sm" />
-        <div className="flex gap-1">
-          <div className="flex-1 h-4 bg-[#54268F]/15 rounded-sm" />
-          <div className="flex-1 h-4 bg-[#54268F]/15 rounded-sm" />
-        </div>
-      </div>
-    )
-  },
-  { 
-    title: "Simple UI design", 
-    icon: (
-      <motion.div
-        animate={{ rotate: [0, 10, -10, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <Palette size={24} />
-      </motion.div>
-    ), 
-    desc: "Crafting clean, aesthetically pleasing interfaces.", 
-    color: "text-pink-400",
-    visual: (
-      <div className="flex gap-1.5">
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-4 h-4 rounded-full bg-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.6)]" 
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0.3 }}
-          className="w-4 h-4 rounded-full bg-purple-400 shadow-[0_0_15px_rgba(192,132,252,0.6)]" 
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1], y: [0, -4, 0] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0.6 }}
-          className="w-4 h-4 rounded-full bg-pink-400 shadow-[0_0_15px_rgba(244,114,182,0.6)]" 
-        />
-      </div>
-    )
-  },
-  { 
-    title: "Iteration & testing", 
-    icon: (
-      <motion.div
-        animate={{ rotate: 360 }}
-        transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-      >
-        <RefreshCw size={24} />
-      </motion.div>
-    ), 
-    desc: "Refining designs based on real user feedback.", 
-    color: "text-emerald-400",
-    visual: (
-      <div className="relative w-12 h-12 flex items-center justify-center">
-        <motion.div 
-          animate={{ rotate: -360 }}
-          transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
-          className="absolute inset-0 border-2 border-dashed border-emerald-500/30 rounded-full"
-        />
-        <motion.div 
-          animate={{ scale: [1, 1.2, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <RefreshCw size={16} className="text-emerald-400" />
-        </motion.div>
-      </div>
-    )
-  }
+const toolkit = [
+  { name: "Figma", icon: Figma, color: "hover:border-[#F24E1E]/50 hover:text-[#F24E1E] hover:shadow-[#F24E1E]/5" },
+  { name: "FigJam", icon: Sparkles, color: "hover:border-[#FFC700]/50 hover:text-[#FFC700] hover:shadow-[#FFC700]/5" },
+  { name: "Adobe Photoshop", icon: Palette, color: "hover:border-[#31A8FF]/50 hover:text-[#31A8FF] hover:shadow-[#31A8FF]/5" },
+  { name: "Illustrator", icon: Layers, color: "hover:border-[#FF9A00]/50 hover:text-[#FF9A00] hover:shadow-[#FF9A00]/5" },
+  { name: "HTML", icon: Code, color: "hover:border-[#E34F26]/50 hover:text-[#E34F26] hover:shadow-[#E34F26]/5" },
+  { name: "CSS", icon: Layout, color: "hover:border-[#1572B6]/50 hover:text-[#1572B6] hover:shadow-[#1572B6]/5" },
+  { name: "Bootstrap", icon: Component, color: "hover:border-[#7952B3]/50 hover:text-[#7952B3] hover:shadow-[#7952B3]/5" },
+  { name: "Auto Layout", icon: MousePointer2, color: "hover:border-[#8B5CF6]/50 hover:text-[#8B5CF6] hover:shadow-[#8B5CF6]/5" },
+  { name: "Components", icon: Component, color: "hover:border-[#0C8BE8]/50 hover:text-[#0C8BE8] hover:shadow-[#0C8BE8]/5" },
+  { name: "Variables", icon: Zap, color: "hover:border-[#10B981]/50 hover:text-[#10B981] hover:shadow-[#10B981]/5" },
+  { name: "Prototyping", icon: Smartphone, color: "hover:border-[#EC4899]/50 hover:text-[#EC4899] hover:shadow-[#EC4899]/5" },
+  { name: "User Flows", icon: RefreshCw, color: "hover:border-[#06B6D4]/50 hover:text-[#06B6D4] hover:shadow-[#06B6D4]/5" },
+  { name: "Wireframing", icon: Layout, color: "hover:border-[#FF5F56]/50 hover:text-[#FF5F56] hover:shadow-[#FF5F56]/5" }
 ];
-
-const tools = [
-  { name: "Figma", logo: "https://southern-apricot-n5c9yizh2f.edgeone.app/figma.png" },
-  { name: "Canva", logo: "https://shaggy-moccasin-idnqm9cb2n.edgeone.app/canva.png" },
-  { name: "Framer", logo: "https://traditional-red-7kwygtop43.edgeone.app/Framer.png" },
-  { name: "Notion", logo: "https://curious-teal-i642un90n6.edgeone.app/notion.png" },
-  { name: "Lightroom", logo: "https://limited-moccasin-omij83lg4w.edgeone.app/lr.png" },
-  { name: "Miro", logo: "https://uneven-black-pz2kkvyr0i.edgeone.app/miro.png" },
-  { name: "Balsamiq", logo: "https://medical-yellow-toefnvwvin.edgeone.app/bal.png" },
-  { name: "Wix Studio", logo: "https://slimy-black-bvn6xn6ykn.edgeone.app/wix.png" },
-  { name: "CorelDraw", logo: "https://dear-copper-l5udx6absq.edgeone.app/coreldraw.png" }
-];
-
-const ToolItem: React.FC<{ tool: typeof tools[0] }> = ({ tool }) => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const scale = useMotionValue(1);
-  const grayscale = useMotionValue(100);
-  const y = useMotionValue(0);
-  
-  const springScale = useSpring(scale, { stiffness: 100, damping: 20 });
-  const springGrayscale = useSpring(grayscale, { stiffness: 100, damping: 20 });
-  const springY = useSpring(y, { stiffness: 100, damping: 20 });
-  
-  const grayscaleFilter = useTransform(springGrayscale, (v) => `grayscale(${v}%)`);
-  const textOpacity = useTransform(springGrayscale, [0, 100], [1, 0.3]);
-
-  React.useEffect(() => {
-    let animId: number;
-    const update = () => {
-      if (!ref.current) return;
-      const rect = ref.current.getBoundingClientRect();
-      const centerX = window.innerWidth / 2;
-      const itemCenterX = rect.left + rect.width / 2;
-      const distance = Math.abs(centerX - itemCenterX);
-      
-      const threshold = 300;
-      const progress = Math.max(0, 1 - distance / threshold);
-      
-      scale.set(1 + progress * 0.4);
-      grayscale.set(100 - progress * 100);
-      y.set(progress * -15);
-      
-      animId = requestAnimationFrame(update);
-    };
-    
-    animId = requestAnimationFrame(update);
-    return () => cancelAnimationFrame(animId);
-  }, [scale, grayscale, y]);
-
-  return (
-    <div ref={ref} className="flex flex-col items-center gap-6 py-12 px-6">
-      <motion.div 
-        style={{ 
-          scale: springScale, 
-          filter: grayscaleFilter,
-          y: springY
-        }}
-        className="w-24 h-24 rounded-[2rem] bg-foreground/[0.03] border border-foreground/10 flex items-center justify-center p-5 shadow-2xl shadow-black/10 backdrop-blur-md relative group"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity" />
-        <img 
-          src={tool.logo} 
-          alt={tool.name} 
-          className="w-full h-full object-contain relative z-10" 
-          referrerPolicy="no-referrer" 
-        />
-      </motion.div>
-      <motion.span 
-        style={{ opacity: textOpacity, y: springY }}
-        className="text-[11px] font-black uppercase tracking-[0.3em] text-foreground/60"
-      >
-        {tool.name}
-      </motion.span>
-    </div>
-  );
-};
 
 export function Skills() {
   return (
-    <PageTransition showGrid={true}>
-      <div className="relative min-h-screen w-full px-6 md:px-[100px] pt-32 overflow-hidden pb-24">
-        <div className="py-8 md:py-12 relative z-10">
-          <div className="mb-16">
+    <PageTransition showGrid={false}>
+      <div className="relative min-h-screen w-full px-6 md:px-12 lg:px-[100px] pt-32 pb-24 overflow-hidden bg-background">
+        
+        {/* Custom Grid Background with 15% Opacity */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none opacity-15">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
+          <div className="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />
+        </div>
+
+        {/* Subtle glowing radial gradient in the top-right corner */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8B5CF6]/5 rounded-full blur-[120px] pointer-events-none" />
+
+        <div className="relative z-10 w-full max-w-7xl mx-auto">
+          
+          {/* Header Section */}
+          <div className="mb-20 pt-10 text-left max-w-[760px]">
             <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#8B5CF6]/10 border border-[#8B5CF6]/30 text-[#A78BFA] text-xs font-black uppercase tracking-widest mb-6"
+            >
+              <span>✦ Core Expertise</span>
+            </motion.div>
+            
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="flex flex-col items-start"
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-4xl sm:text-5xl md:text-[72px] font-black text-white leading-[1.05] tracking-tighter mb-6 bg-gradient-to-r from-white via-white to-white/70 bg-clip-text text-transparent"
             >
-              <Badge className="mb-4 bg-[#54268F]/15 text-[#0C8BE8] border-[#0C8BE8]/30">Capabilities</Badge>
-              <h1 className="text-5xl md:text-7xl font-black text-gradient mb-6 tracking-tighter">
-                My Expertise
-              </h1>
-              <p className="text-muted-foreground max-w-2xl text-xl leading-relaxed font-medium">
-                I specialize in the end-to-end design process, transforming complex requirements into polished, user-centered interfaces.
-              </p>
-            </motion.div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32">
-            {expertise.map((skill, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="group relative"
-              >
-                {/* Animated Border Glow */}
-                <div className={cn(
-                  "absolute -inset-[1px] rounded-[2rem] opacity-0 group-hover:opacity-100 blur-md transition-opacity duration-500 bg-gradient-to-br",
-                  skill.color
-                )} />
-                
-                <div className="relative h-full bg-[#0d0d0f] border border-white/5 rounded-[2rem] p-10 overflow-hidden flex flex-col shadow-2xl">
-                  {/* Background Graphic */}
-                  <div className="absolute inset-0 z-0 group-hover:scale-110 transition-transform duration-700">
-                    {skill.graphic}
-                  </div>
-
-                  {/* Top Section */}
-                  <div className="relative z-10 flex items-start justify-between mb-10">
-                    <div className={cn(
-                      "w-16 h-16 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-500 shadow-xl",
-                      skill.iconColor
-                    )}>
-                      {skill.icon}
-                    </div>
-                    <div className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-x-4 group-hover:translate-x-0">
-                      <Sparkles size={16} className="text-[#0C8BE8]" />
-                    </div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="relative z-10 mt-auto">
-                    <h3 className="text-2xl font-black mb-4 tracking-tight text-white group-hover:text-[#0C8BE8] transition-colors duration-300">
-                      {skill.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed font-medium text-lg">
-                      {skill.desc}
-                    </p>
-                  </div>
-
-                  {/* Bottom Indicator */}
-                  <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#54268F]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-center" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Design Approach Section */}
-          <div className="mb-32 relative z-10">
-            <SectionTitle 
-              title="Design Approach" 
-              subtitle="My systematic process for creating meaningful digital experiences."
-            />
+              Designing Products That Users Love & Businesses Value
+            </motion.h1>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mt-12">
-              {designApproach.map((item, idx) => (
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-white/60 text-lg md:text-[20px] leading-relaxed font-medium"
+            >
+              I transform complex ideas into intuitive digital experiences by combining user research, strategic thinking, interaction design, and scalable UI systems.
+            </motion.p>
+          </div>
+
+          {/* Cards Grid */}
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.08,
+                },
+              },
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24"
+          >
+            {expertises.map((skill, idx) => {
+              const IconComponent = skill.icon;
+              return (
                 <motion.div
                   key={idx}
-                  initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.35, delay: idx * 0.05, ease: "easeOut" }}
+                  variants={{
+                    hidden: { opacity: 0, y: 30 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+                  }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group relative cursor-pointer h-[340px] rounded-[28px] bg-[#0A0718] border border-[#8B5CF6]/20 hover:border-[#8B5CF6]/50 transition-all duration-300 shadow-2xl hover:shadow-[0_0_40px_rgba(139,92,246,0.15)] overflow-hidden flex flex-col justify-between p-6 md:p-8"
                 >
-                  <GlassCard className="h-full p-6 flex flex-col items-start text-left transition-all duration-500 group relative overflow-hidden border-white/5 hover:border-[#0C8BE8]/30 bg-[rgba(13,13,15,0.75)]">
-                    {/* Background Number */}
-                    <motion.div 
-                      initial={{ opacity: 0, x: 20 }}
-                      whileInView={{ opacity: 0.05, x: 0 }}
-                      transition={{ delay: 0.5 + idx * 0.1 }}
-                      className="absolute -right-4 -bottom-4 text-8xl font-black text-foreground select-none pointer-events-none"
-                    >
-                      0{idx + 1}
-                    </motion.div>
-                    
-                    {/* Icon with animated background */}
-                    <div className="relative mb-6">
-                      <motion.div 
-                        whileInView={{ opacity: [0.1, 0.3, 0.1], scale: [1, 1.2, 1] }}
-                        transition={{ duration: 4, repeat: Infinity }}
-                        className={cn(
-                          "absolute inset-0 blur-xl rounded-full",
-                          item.color.replace("text-", "bg-")
-                        )} 
-                      />
-                      <motion.div 
-                        whileInView={{ rotate: [0, -5, 5, 0] }}
-                        transition={{ duration: 5, repeat: Infinity }}
-                        className={cn(
-                          "w-14 h-14 rounded-2xl bg-background/80 border border-border flex items-center justify-center relative z-10 shadow-lg",
-                          item.color
-                        )}
-                      >
-                        {item.icon}
-                      </motion.div>
+                  {/* Subtle internal overlay */}
+                  <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/[0.01] to-transparent pointer-events-none" />
+                  
+                  {/* Inner neon border glow on hover */}
+                  <div className="absolute -inset-px rounded-[28px] bg-gradient-to-r from-transparent via-[#8B5CF6]/10 to-transparent opacity-0 group-hover:opacity-100 blur-sm transition-opacity duration-500 pointer-events-none" />
+
+                  {/* Top Portion: Icon & Text */}
+                  <div className="flex flex-col items-start gap-4">
+                    <div className="flex justify-between items-start w-full">
+                      {/* Icon container: 64px, Glass background, soft glowing effect */}
+                      <div className={cn(
+                        "w-16 h-16 rounded-[18px] bg-white/[0.02] border border-white/[0.08] backdrop-blur-md flex items-center justify-center shadow-lg transition-all duration-300 group-hover:scale-110",
+                        skill.accent === "blue" ? "group-hover:border-blue-500/40 group-hover:shadow-blue-500/10" :
+                        skill.accent === "purple" ? "group-hover:border-[#8B5CF6]/40 group-hover:shadow-[#8B5CF6]/10" :
+                        skill.accent === "green" ? "group-hover:border-emerald-500/40 group-hover:shadow-emerald-500/10" :
+                        skill.accent === "yellow" ? "group-hover:border-amber-500/40 group-hover:shadow-amber-500/10" :
+                        skill.accent === "cyan" ? "group-hover:border-cyan-500/40 group-hover:shadow-cyan-500/10" :
+                        "group-hover:border-orange-500/40 group-hover:shadow-orange-500/10"
+                      )}>
+                        <IconComponent className={cn(
+                          "w-7 h-7 transition-all duration-300 group-hover:rotate-[5deg]",
+                          skill.accent === "blue" ? "text-blue-400 group-hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.5)]" :
+                          skill.accent === "purple" ? "text-[#A78BFA] group-hover:drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]" :
+                          skill.accent === "green" ? "text-emerald-400 group-hover:drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]" :
+                          skill.accent === "yellow" ? "text-amber-400 group-hover:drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]" :
+                          skill.accent === "cyan" ? "text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]" :
+                          "text-orange-400 group-hover:drop-shadow-[0_0_8px_rgba(249,115,22,0.5)]"
+                        )} />
+                      </div>
+                      <span className="text-[10px] font-mono text-white/20 group-hover:text-white/40 transition-colors">0{idx + 1}</span>
                     </div>
 
-                    {/* Visual UI Method Elements - Reduced transparency and size */}
-                    <div className="absolute top-4 right-4 opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none scale-90 origin-top-right">
-                      {item.visual}
+                    <div className="text-left">
+                      <h3 className="text-xl sm:text-2xl md:text-[30px] font-black tracking-tight text-white group-hover:text-white transition-colors duration-300">
+                        {skill.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm md:text-[17px] text-white/50 leading-relaxed font-medium mt-1.5 group-hover:text-white/70 transition-colors line-clamp-3">
+                        {skill.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Bottom Portion: Highlights and Badge */}
+                  <div className="flex flex-col gap-3 w-full">
+                    <div className="flex flex-wrap gap-1.5 transition-transform duration-300 group-hover:translate-y-[-2px]">
+                      {skill.highlights.map((highlight, hIdx) => (
+                        <span 
+                          key={hIdx} 
+                          className="text-[10px] sm:text-xs md:text-[14px] font-semibold px-2.5 py-0.5 rounded-full bg-white/[0.02] border border-white/[0.04] text-white/60 group-hover:text-white/80 group-hover:border-white/10 group-hover:bg-white/[0.04] transition-all duration-300"
+                        >
+                          {highlight}
+                        </span>
+                      ))}
                     </div>
 
-                    <h3 className="text-lg font-bold mb-3 tracking-tight relative z-10 group-hover:text-[#0C8BE8] transition-colors">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed relative z-10">{item.desc}</p>
-                    
-                    {/* Animated scanning line - now auto-animates on scroll */}
-                    <motion.div 
-                      animate={{ x: ["-100%", "200%"] }}
-                      transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                      className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0C8BE8]/50 to-transparent" 
-                    />
-                  </GlassCard>
+                    <div className="flex items-center justify-between border-t border-white/[0.04] pt-3 mt-1">
+                      <span className="text-[11px] sm:text-xs md:text-[13px] font-bold text-[#8B5CF6] group-hover:text-[#A78BFA] uppercase tracking-wider transition-colors">
+                        {skill.badge}
+                      </span>
+                      <ArrowRight size={12} className="text-white/20 group-hover:text-[#8B5CF6] group-hover:translate-x-1 transition-all" />
+                    </div>
+                  </div>
                 </motion.div>
-              ))}
+              );
+            })}
+          </motion.div>
+
+          {/* Design Toolkit Section */}
+          <div className="mt-28 relative">
+            <div className="flex flex-col items-start text-left mb-10">
+              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#8B5CF6] mb-3 block">
+                ✦ Design Toolkit
+              </span>
+              <h2 className="text-2xl md:text-3xl font-black text-white tracking-tighter">
+                Tools & Methods I Use to Build Products
+              </h2>
+            </div>
+
+            <div className="flex flex-wrap gap-3 max-w-4xl justify-start">
+              {toolkit.map((badge, idx) => {
+                const BadgeIcon = badge.icon;
+                return (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    className={cn(
+                      "px-5 py-3 rounded-full bg-white/[0.02] border border-white/[0.06] text-white/70 text-xs sm:text-sm md:text-[14px] font-bold flex items-center gap-2.5 backdrop-blur-sm cursor-pointer transition-colors duration-300 shadow-xl",
+                      badge.color
+                    )}
+                  >
+                    <BadgeIcon size={16} />
+                    <span>{badge.name}</span>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
-          <div className="mt-40 relative">
-            {/* Background Text Decoration */}
-            <div className="absolute -top-20 left-1/2 -translate-x-1/2 text-[10vw] font-black text-white/[0.02] whitespace-nowrap pointer-events-none select-none uppercase tracking-tighter">
-              Tools & Technologies
-            </div>
-
-            <div className="relative z-10">
-              <div className="flex flex-col items-center mb-20">
-                <Badge className="mb-4 bg-white/5 text-white/40 border-white/10 px-6 py-2">Design Arsenal</Badge>
-                <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter text-center">
-                  Crafting with Precision
-                </h2>
-              </div>
-
-              <div className="relative w-full overflow-hidden py-10">
-                <div className="absolute inset-y-0 left-0 w-40 md:w-80 bg-gradient-to-r from-background via-background/50 to-transparent z-10" />
-                <div className="absolute inset-y-0 right-0 w-40 md:w-80 bg-gradient-to-l from-background via-background/50 to-transparent z-10" />
-                
-                <motion.div 
-                  animate={{ x: ["0%", "-50%"] }}
-                  transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-                  className="flex gap-12 md:gap-24 w-max items-center"
-                >
-                  {[...tools, ...tools, ...tools].map((tool, idx) => (
-                    <ToolItem key={idx} tool={tool} />
-                  ))}
-                </motion.div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </PageTransition>
